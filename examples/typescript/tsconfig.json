@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "target": "esnext",
+    "paths": {
+      "react-simple-wysiwyg/*": ["../../src/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

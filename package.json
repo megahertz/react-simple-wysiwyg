@@ -1,0 +1,36 @@
+{
+  "name": "react-simple-wysiwyg",
+  "version": "0.0.1",
+  "description": "Simple and lightweight React WYSIWYG editor",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint 'src/**/*.tsx?'"
+  },
+  "repository": "megahertz/react-simple-wysiwyg",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "react",
+    "wysiwyg",
+    "editor",
+    "rich text"
+  ],
+  "author": "Alexey Prokhorov",
+  "license": "MIT",
+  "bugs": "https://github.com/megahertz/react-simple-wysiwyg/issues",
+  "homepage": "https://github.com/megahertz/react-simple-wysiwyg#readme",
+  "devDependencies": {
+    "@types/react": "^16.8.16",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "tslint": "^5.16.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  }
+}

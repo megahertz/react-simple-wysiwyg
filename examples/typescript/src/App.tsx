@@ -1,0 +1,19 @@
+import * as React from 'react';
+import DefaultEditor from 'react-simple-wysiwyg/DefaultEditor';
+
+export default function App() {
+  const [html, setHtml] = React.useState('first line <br> <b>second</b> line');
+
+  const onChange = (e) => {
+    setHtml(e.target.value);
+  };
+
+  return (
+    <>
+      <DefaultEditor value={html} onChange={onChange} />
+      <hr />
+      <DefaultEditor value={html} onChange={onChange} />
+      {html}
+    </>
+  );
+}
