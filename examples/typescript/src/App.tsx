@@ -10,9 +10,9 @@ export default function App() {
 
   return (
     <>
-      <DefaultEditor value={html} onChange={onChange} />
+      <DefaultEditor value={html} onChange={onChange} title="ed1" />
       <hr />
-      <DefaultEditor value={html} onChange={onChange} />
+      <DefaultEditor value={html} onChange={onChange} title="ed2" />
       {html}
     </>
   );

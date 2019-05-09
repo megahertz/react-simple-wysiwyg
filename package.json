@@ -6,7 +6,13 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint 'src/**/*.tsx?'"
+    "gh-pages": "npm run gh-pages:pre && gh-pages -d examples/typescript/dist",
+    "gh-pages:pre": "npm run build --prefix examples/typescript",
+    "lint": "tslint -p tsconfig.json -t verbose",
+    "postversion": "git push && git push --tags && gh-pages",
+    "prepack": "npm run build && npm run test",
+    "test": "npm run lint && npm run spell",
+    "spell": "yaspeller-ci '*.md'"
   },
   "repository": "megahertz/react-simple-wysiwyg",
   "files": [
@@ -24,13 +30,21 @@
   "homepage": "https://github.com/megahertz/react-simple-wysiwyg#readme",
   "devDependencies": {
     "@types/react": "^16.8.16",
+    "gh-pages": "^2.0.1",
+    "husky": "^2.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "tslint": "^5.16.0",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "yaspeller-ci": "^1.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

@@ -26,18 +26,13 @@
     "no-unused-expression": false,
     "no-var-requires": false,
     "object-literal-key-quotes": [true, "as-needed"],
-    "object-literal-sort-keys": [
-      true,
-      "locale-compare",
-      "match-declaration-order",
-      "shorthand-first"
-    ],
     "quotemark": [true, "single", "jsx-double"],
     "variable-name": false
   },
   "linterOptions": {
     "exclude": [
       "**/*.js"
-    ]
+    ],
+    "format": "verbose"
   }
 }

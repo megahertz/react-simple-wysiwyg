@@ -1,16 +1,11 @@
 import * as React from 'react';
+import { IEditorContext, withEditorContext } from '../Editor';
 
-export default function Separator() {
+function Separator(context: IEditorContext) {
   return (
-    <span style={styles} />
+    <span style={context.styles.separator} />
   );
 }
 
-const styles = {
-  backgroundColor: '#ddd',
-  display: 'inline-block',
-  margin: 2,
-  height: 20,
-  verticalAlign: 'top',
-  width: 1,
-};
+const WrappedSeparator = withEditorContext(Separator);
+export default WrappedSeparator;

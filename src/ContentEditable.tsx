@@ -1,15 +1,6 @@
-import {
-  Component,
-  createElement,
-  CSSProperties,
-  FocusEventHandler,
-  FormEventHandler,
-  HTMLAttributes,
-  KeyboardEventHandler,
-  RefObject,
-} from 'react';
+import { Component, createElement, HTMLAttributes } from 'react';
 import * as React from 'react';
-import { normalizeHtml, replaceCaret, shallowCompare } from './utils';
+import { compare, normalizeHtml, replaceCaret } from './utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
@@ -24,7 +15,7 @@ export default class ContentEditable extends Component<ICEProps> {
 
     this.previousValue = props.value;
 
-    this.onChange = this.onChange.bind(this);
+    this.onChange      = this.onChange.bind(this);
     this.setElementRef = this.setElementRef.bind(this);
   }
 
@@ -35,19 +26,11 @@ export default class ContentEditable extends Component<ICEProps> {
       return true;
     }
 
-    // Render call leads to cursor jump, so prevent it if possible
-
     if (normalizeHtml(nextProps.value) !== normalizeHtml(this.el.innerHTML)) {
       return true;
     }
 
-    console.log('scu');
-
-    if (!shallowCompare(props.style, nextProps.style)) {
-      return true;
-    }
-
-    return shallowCompare(props, nextProps);
+    return !compare(props, nextProps, ['disabled', 'tagName', 'className']);
   }
 
   componentDidUpdate() {
@@ -56,22 +39,18 @@ export default class ContentEditable extends Component<ICEProps> {
     }
 
     if (this.props.value !== this.el.innerHTML) {
-      this.el.innerHTML = this.props.value;
       this.previousValue = this.props.value;
+      this.el.innerHTML = this.props.value;
     }
 
     replaceCaret(this.el);
   }
 
   setElementRef(el) {
-    const { innerRef } = this.props;
+    const { contentEditableRef } = this.props;
     this.el = el;
 
-    if (typeof innerRef === 'function') {
-      innerRef(el);
-    } else if (typeof innerRef === 'object') {
-      (innerRef as any).current = el;
-    }
+    contentEditableRef && contentEditableRef(el);
   }
 
   onChange(event: React.FormEvent<HTMLElement>) {
@@ -79,54 +58,34 @@ export default class ContentEditable extends Component<ICEProps> {
       return;
     }
 
-    const html = this.el.innerHTML;
+    const value = this.el.innerHTML;
+    const previous = this.previousValue;
+    this.previousValue = value;
 
-    if (this.props.onChange && html !== this.previousValue) {
-      this.props.onChange({
-        ...event,
-        target: {
-          value: html,
-        } as any,
-      });
+    if (this.props.onChange && value !== previous) {
+      this.props.onChange({ ...event, target: { value } as any });
     }
-    this.previousValue = html;
   }
 
   render() {
-    const { tagName, value, innerRef, ...props } = this.props;
-
-    const style = { ...styles.root, ...props.style };
+    const { contentEditableRef, tagName, value, ...props } = this.props;
 
     return createElement(tagName || 'div', {
       ...props,
       contentEditable: !this.props.disabled,
       dangerouslySetInnerHTML: { __html: value },
-      onInput: this.onChange,
       onBlur: this.props.onBlur || this.onChange,
-      onKeyUp: this.props.onKeyUp || this.onChange,
+      onInput: this.onChange,
       onKeyDown: this.props.onKeyDown || this.onChange,
+      onKeyUp: this.props.onKeyUp || this.onChange,
       ref: this.setElementRef,
-      style,
-    }, this.props.children);
+    });
   }
 }
 
 export interface ICEProps extends HTMLAttributes<HTMLElement> {
-  className?: string;
   disabled?: boolean;
-  innerRef?: (el: HTMLElement) => void | RefObject<HTMLElement>;
-  onChange?: FormEventHandler<HTMLElement>;
-  onBlur?: FocusEventHandler<HTMLElement>;
-  onKeyUp?: KeyboardEventHandler<HTMLElement>;
-  onKeyDown?: KeyboardEventHandler<HTMLElement>;
+  contentEditableRef?: (el: HTMLElement) => void;
   tagName?: string;
-  style?: CSSProperties;
   value?: string;
 }
-
-const styles = {
-  root: {
-    outline: 'none',
-    padding: 5,
-  },
-};

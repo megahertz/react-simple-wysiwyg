@@ -1,3 +1,37 @@
+export function compare<T>(a: T, b: T, keys: Array<keyof T>): boolean {
+  return keys.every((key) => {
+    return a[key] === b[key];
+  });
+}
+
+export function deepMerge<T>(target, ...sources: T[]): T {
+  if (!sources.length)  {
+    return target;
+  }
+
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (!source.hasOwnProperty(key)) {
+        continue;
+      }
+
+      if (isObject(source[key])) {
+        if (!target[key]) {
+          Object.assign(target, { [key]: {} });
+        }
+
+        deepMerge(target[key], source[key]);
+      } else {
+        Object.assign(target, { [key]: source[key] });
+      }
+    }
+  }
+
+  return deepMerge(target, ...sources);
+}
+
 export function findLastTextNode(node: Node): Node | null {
   if (node.nodeType === Node.TEXT_NODE) {
     return node;
@@ -25,6 +59,10 @@ export function getSelectedNode(): Node {
   }
 }
 
+function isObject(item) {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
 export function normalizeHtml(str: string): string {
   return str && str.replace(/&nbsp;|\u202F|\u00A0/g, ' ');
 }
@@ -47,14 +85,4 @@ export function replaceCaret(el: HTMLElement) {
       el.focus();
     }
   }
-}
-
-export function shallowCompare(obj1: object, obj2: object): boolean {
-  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
-    return false;
-  }
-
-  return Object.keys(obj1).every((key) => {
-    return obj2.hasOwnProperty(key) && obj1[key] === obj2[key];
-  });
 }

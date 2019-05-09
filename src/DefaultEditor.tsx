@@ -1,66 +1,39 @@
-import { CSSProperties } from 'react';
 import * as React from 'react';
-import ContentEditable, { ICEProps } from './ContentEditable';
+import Editor, { IEditorProps } from './Editor';
 import {
-  Bold,
-  ClearFormatting,
-  Italic,
-  Link,
-  OrderedList,
-  Redo,
-  Underline,
-  Undo,
-  UnorderedList,
-} from './toolbar/buttons';
-import Separator from './toolbar/Separator';
-import Toolbar from './toolbar/Toolbar';
+  BtnBold,
+  BtnBulletList,
+  BtnClearFormatting,
+  BtnItalic,
+  BtnLink,
+  BtnNumberedList,
+  BtnRedo,
+  BtnStyles,
+  BtnUnderline,
+  BtnUndo,
+  Separator,
+  Toolbar,
+} from './toolbar';
 
-export default function DefaultEditor(props: IProps) {
-  const containerStyle = {
-    ...styles.root,
-    ...props.containerStyle,
-  };
-
-  const contentEditableStyle = {
-    ...styles.contentEditable,
-    ...props.style,
-  };
-
+export default function DefaultEditor(props: IEditorProps) {
   return (
-    <div style={containerStyle}>
+    <Editor {...props}>
       <Toolbar>
-        <Undo />
-        <Redo />
+        <BtnUndo />
+        <BtnRedo />
         <Separator />
-        <Bold />
-        <Italic />
-        <Underline />
+        <BtnBold />
+        <BtnItalic />
+        <BtnUnderline />
         <Separator />
-        <OrderedList />
-        <UnorderedList />
+        <BtnNumberedList />
+        <BtnBulletList />
         <Separator />
-        <Link />
-        <ClearFormatting />
+        <BtnLink />
+        <BtnClearFormatting />
+        <Separator />
+        <BtnStyles />
       </Toolbar>
-      <ContentEditable {...props} style={contentEditableStyle} />
-    </div>
+    </Editor>
   );
 }
-
-export interface IProps extends ICEProps {
-  containerStyle?: CSSProperties;
-}
-
-const styles = {
-  contentEditable: {
-    flex: 1,
-  },
-
-  root: {
-    border: '1px solid #ddd',
-    borderRadius: 3,
-    display: 'flex',
-    flexDirection: 'column' as any,
-    minHeight: 100,
-  },
-};
