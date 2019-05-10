@@ -1,5 +1,3 @@
-![Logo](docs/resources/logo/logo-64.png)
-
 # react-simple-wysiwyg
 [![Build Status](https://travis-ci.org/megahertz/react-simple-wysiwyg.svg?branch=master)](https://travis-ci.org/megahertz/react-simple-wysiwyg)
 [![NPM version](https://badge.fury.io/js/react-simple-wysiwyg.svg)](https://badge.fury.io/js/react-simple-wysiwyg)
