@@ -55,15 +55,15 @@
       return [
         React.createElement('h2', null, 'editor'),
         React.createElement(ReactSimpleWysiwyg.DefaultEditor, {
-          value,
-          onChange(e) {
+          value: value,
+          onChange: function(e) {
             setValue(e.target.value);
           }
         }),
         React.createElement('h2', null, 'source'),
         React.createElement('textarea', {
-          value,
-          onChange(e) {
+          value: value,
+          onChange: function(e) {
             setValue(e.target.value);
           }
         })
