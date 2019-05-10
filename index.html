@@ -48,7 +48,9 @@
   <script src="//unpkg.com/react-simple-wysiwyg@latest"></script>
   <script>
     function App() {
-      const [ value, setValue ] = React.useState('');
+      var statePair = React.useState('');
+      var value = statePair[0];
+      var setValue = statePair[1];
 
       return [
         React.createElement('h2', null, 'editor'),
