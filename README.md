@@ -31,7 +31,7 @@ If you need more powerful solution for React, you'd better take a look at:
  - [draft.js](https://draftjs.org/) or draft-powered editor like
    [react-rte](https://github.com/sstur/react-rte)
  - classic solution like [CKEditor](https://ckeditor.com/) and
-   (TinyMCE)[https://www.tiny.cloud/]
+   [TinyMCE](https://www.tiny.cloud/)
  - [Quill](https://github.com/zenoamaro/react-quill) and
    [Summernote](https://github.com/summernote/react-summernote)
 
