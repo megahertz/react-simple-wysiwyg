@@ -1,6 +1,6 @@
 {
   "name": "react-simple-wysiwyg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/index.js",
   "umd:main": "lib/umd/index.umd.js",
