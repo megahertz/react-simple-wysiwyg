@@ -6,13 +6,13 @@
 [![Dependencies status](https://david-dm.org/megahertz/react-simple-wysiwyg/status.svg)](https://david-dm.org/megahertz/react-simple-wysiwyg)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-simple-wysiwyg.svg?color=rgb%2868%2C%20204%2C%2017%29)](https://bundlephobia.com/result?p=react-simple-wysiwyg@0.0.3)
 
-Simple and lightweight React WYSIWYG editor. [Demo](https://megahertz.github.io/react-simple-wysiwyg/)
-
-[![Screenshot](docs/resources/screenshot.png)](https://megahertz.github.io/react-simple-wysiwyg/)
+Simple and lightweight React WYSIWYG editor. [Demo](https://megahertz.github.io/react-simple-wysiwyg/).
 
 ## Description
 
 **The project is in alpha stage.**
+
+[![Screenshot](docs/resources/screenshot.png)](https://megahertz.github.io/react-simple-wysiwyg/)
 
 It can be helpful if you only need basic text operations
 
