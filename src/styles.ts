@@ -5,6 +5,7 @@ const styles = {
       border: 'none',
       color: '#222',
       height: 24,
+      outline: 'none',
       padding: 0,
       verticalAlign: 'top',
       width: 24,

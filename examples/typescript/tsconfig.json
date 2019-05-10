@@ -8,7 +8,7 @@
     ],
     "moduleResolution": "node",
     "outDir": "dist",
-    "target": "esnext",
+    "target": "es5",
     "paths": {
       "react-simple-wysiwyg/*": ["../../src/*"],
       "react-simple-wysiwyg": ["../../src/index.ts"]

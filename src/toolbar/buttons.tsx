@@ -7,13 +7,13 @@ import UnorderedListIcon from './icons/UnorderedListIcon';
 // tslint:disable:max-line-length
 
 export const BtnBold = createButton('Bold', '𝐁', 'bold');
-export const BtnClearFormatting = createButton('Clear formatting', '𝘛̲ₓ', 'removeFormat');
+export const BtnClearFormatting = createButton('Clear formatting', 'T̲ₓ', 'removeFormat');
 export const BtnItalic = createButton('Italic', '𝑰', 'italic');
 export const BtnLink = createButton('Link', '🔗', (selected: Node) => {
   if (selected && selected.nodeName === 'A') {
     document.execCommand('unlink');
   } else {
-    document.execCommand('createLink', true, prompt('URL'));
+    document.execCommand('createLink', false, prompt('URL'));
   }
 });
 export const BtnNumberedList = createButton('Numbered list', <OrderedListIcon />, 'insertOrderedList');
@@ -45,16 +45,10 @@ export function Button(props: IButtonProps) {
     props.onMouseLeave && props.onMouseLeave(e);
   };
 
-  const onMouseDown = (e) => {
-    e.preventDefault();
-    props.onMouseDown && props.onMouseDown(e);
-  };
-
   return (
     <button
       {...inputProps}
       style={style}
-      onMouseDown={onMouseDown}
       onMouseEnter={onHover}
       onMouseLeave={onUnHover}
     />
@@ -85,7 +79,7 @@ function createButton(
     }
 
     return (
-      <Button title={title} {...buttonProps} onClick={action} active={active}>
+      <Button title={title} {...buttonProps} onMouseDown={action} active={active}>
         {content}
       </Button>
     );

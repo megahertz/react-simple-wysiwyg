@@ -16,6 +16,7 @@ module.exports = {
     filename: 'bundle.js',
     public: 'http://localhost:8080',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
