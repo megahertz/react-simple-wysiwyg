@@ -6,7 +6,7 @@ import {
 } from 'react';
 import * as React from 'react';
 import ContentEditable, { ICEProps } from './ContentEditable';
-import defaultStyles, { IStyles } from './styles';
+import defaultStyles, { IEditorStyles, IStyles } from './styles';
 import { deepMerge, getSelectedNode } from './utils';
 
 export const EditorContext = createContext<IEditorContext>({
@@ -60,7 +60,7 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
     const { children, styles, ...props } = this.props;
     const { contentEditable, selection } = this.state;
 
-    const allStyles = deepMerge({}, defaultStyles, styles);
+    const allStyles = deepMerge({}, defaultStyles, styles as any);
 
     const context: IEditorContext = {
       el: contentEditable,
@@ -110,7 +110,7 @@ export function withEditorContext<T extends ComponentType<any>>(
 }
 
 export interface IEditorProps extends ICEProps {
-  styles?: IStyles;
+  styles?: IEditorStyles;
 }
 
 export interface IEditorContext {

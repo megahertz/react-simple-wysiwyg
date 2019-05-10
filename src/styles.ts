@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 const styles = {
   button: {
     normal: {
@@ -53,4 +55,10 @@ const styles = {
 };
 
 export default styles;
+
+type CssCollection<T> = {
+  [P in keyof T]?: CSSProperties | CssCollection<T[P]>;
+};
+
 export type IStyles = typeof styles;
+export type IEditorStyles = CssCollection<IStyles>;
