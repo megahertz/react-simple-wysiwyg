@@ -11,6 +11,7 @@
       color: #444;
       max-width: 500px;
       margin: 15px auto 5px;
+      padding: 5px;
     }
 
     h1, h2 {
@@ -24,7 +25,6 @@
 
     h2 {
       font-size: 16px;
-
       margin: 10px 0 0;
     }
 
@@ -42,26 +42,28 @@
   <h1>react-simple-wysiwyg example</h1>
 
   <div id="root"></div>
-
+  <script crossorigin src="//polyfill.io/v3/polyfill.min.js?features=es2015"></script>
   <script src="//unpkg.com/react@16.8.0/umd/react.production.min.js"></script>
   <script src="//unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js"></script>
   <script src="//unpkg.com/react-simple-wysiwyg@latest"></script>
   <script>
     function App() {
-      const [ value, setValue ] = React.useState('');
+      var statePair = React.useState('');
+      var value = statePair[0];
+      var setValue = statePair[1];
 
       return [
         React.createElement('h2', null, 'editor'),
         React.createElement(ReactSimpleWysiwyg.DefaultEditor, {
-          value,
-          onChange(e) {
+          value: value,
+          onChange: function(e) {
             setValue(e.target.value);
           }
         }),
         React.createElement('h2', null, 'source'),
         React.createElement('textarea', {
-          value,
-          onChange(e) {
+          value: value,
+          onChange: function(e) {
             setValue(e.target.value);
           }
         })
