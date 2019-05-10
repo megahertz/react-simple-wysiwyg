@@ -10,9 +10,9 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "rm -rf lib && tsc && tsc -t ES2018 --outDir lib/es --declaration false && rollup -c",
-    "gh-pages": "gh-pages -d examples/github.io",
+    "pages": "gh-pages -d examples/github.io",
     "lint": "tslint -p tsconfig.json -t verbose",
-    "postversion": "git push && git push --tags && gh-pages",
+    "postversion": "git push && git push --tags",
     "prepack": "npm run build && npm run test",
     "test": "npm run lint && npm run spell",
     "spell": "yaspeller-ci ."

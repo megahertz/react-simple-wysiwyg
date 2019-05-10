@@ -3,6 +3,7 @@ const styles = {
     normal: {
       backgroundColor: 'unset',
       border: 'none',
+      color: '#222',
       height: 24,
       padding: 0,
       verticalAlign: 'top',
@@ -25,10 +26,11 @@ const styles = {
   },
 
   dropdown: {
+    boxSizing: 'border-box' as any,
     height: 20,
     marginTop: 2,
     outline: 'none',
-    width: '5em',
+    verticalAlign: 'top',
   },
 
   editor: {

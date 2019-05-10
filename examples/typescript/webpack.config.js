@@ -10,9 +10,11 @@ module.exports = {
     publicPath: '/dist/',
   },
   devServer: {
+    host: '0.0.0.0',
     hot: true,
     lazy: false,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    public: 'http://localhost:8080',
   },
   module: {
     rules: [
