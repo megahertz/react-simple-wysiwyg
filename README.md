@@ -6,19 +6,19 @@
 [![Dependencies status](https://david-dm.org/megahertz/react-simple-wysiwyg/status.svg)](https://david-dm.org/megahertz/react-simple-wysiwyg)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-simple-wysiwyg.svg?color=rgb%2868%2C%20204%2C%2017%29)](https://bundlephobia.com/result?p=react-simple-wysiwyg@0.0.3)
 
-**The project is in alpha stage.**
+Simple and lightweight React WYSIWYG editor. [Demo](https://megahertz.github.io/react-simple-wysiwyg/)
 
-Simple and lightweight React WYSIWYG editor.
+[![Screenshot](docs/resources/screenshot.png)](https://megahertz.github.io/react-simple-wysiwyg/)
+
+## Description
+
+**The project is in alpha stage.**
 
 It can be helpful if you only need basic text operations
 
  - Pretty small (~10kb, ~4kb gzipped)
  - Simple to configure
  - Simple to extend
- 
-[Demo](https://megahertz.github.io/react-simple-wysiwyg/)
-[![Screenshot](docs/resources/screenshot.png)](https://megahertz.github.io/react-simple-wysiwyg/)
-
 
 Of course, it's not so powerful as other complex editors. It DOES NOT:
 
@@ -41,11 +41,11 @@ If you need more powerful solution for React, you'd better take a look at:
 
  1. Install with [npm](https://npmjs.org/package/react-simple-wysiwyg):
 
-    npm install react-simple-wysiwyg
+    `npm install react-simple-wysiwyg`
     
-   or [unpkg.com CDN](https://unpkg.com/react-simple-wysiwyg@0.0.3/)
+    or [CDN (unpkg.com)](https://unpkg.com/react-simple-wysiwyg@0.0.3/)
    
-    <script src="//unpkg.com/react-simple-wysiwyg"></script>
+    `<script src="//unpkg.com/react-simple-wysiwyg"></script>`
     
  2. Use it you React component
  
