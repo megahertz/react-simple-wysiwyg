@@ -9,8 +9,22 @@
     ".md"
   ],
   "dictionary": [
+    "CDN",
     "CLI",
+    "com",
+    "gzipped",
+    "js",
     "npm",
-    "wysiwyg"
+    "unpkg",
+    "wysiwyg",
+
+    "10kb",
+    "4kb",
+    "CKEditor",
+    "contenteditable",
+    "lovasoa",
+    "rte",
+    "Summernote",
+    "TinyMCE"
   ]
 }

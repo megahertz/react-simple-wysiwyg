@@ -3,20 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>react-simple-wysiwyg</title>
+
+  <style>
+    body {
+      color: #444;
+      max-width: 500px;
+      margin: 15px auto 5px;
+    }
+
+    h1, h2 {
+      font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+      font-weight: normal;
+    }
+
+    h1 {
+      margin: 10px 0 20px;
+    }
+
+    h2 {
+      font-size: 16px;
+
+      margin: 10px 0 0;
+    }
+
+    textarea {
+      border: 1px solid rgb(221, 221, 221);
+      border-radius: 3px;
+      box-sizing: border-box;
+      display: block;
+      min-height: 100px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
+  <h1>react-simple-wysiwyg example</h1>
+
   <div id="root"></div>
 
-  <script src="//unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
-  <script src="//unpkg.com/react-dom@16.7.0/umd/react-dom.production.min.js"></script>
-  <script src="//unpkg.com/react-simple-wysiwyg"></script>
+  <script src="//unpkg.com/react@16.8.0/umd/react.production.min.js"></script>
+  <script src="//unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js"></script>
+  <script src="//unpkg.com/react-simple-wysiwyg@latest"></script>
   <script>
     function App() {
-      return React.createElement('ReactSimpleWysiwyg.DefaultEditor');
+      const [ value, setValue ] = React.useState('');
+
+      return [
+        React.createElement('h2', null, 'editor'),
+        React.createElement(ReactSimpleWysiwyg.DefaultEditor, {
+          value,
+          onChange(e) {
+            setValue(e.target.value);
+          }
+        }),
+        React.createElement('h2', null, 'source'),
+        React.createElement('textarea', {
+          value,
+          onChange(e) {
+            setValue(e.target.value);
+          }
+        })
+      ];
     }
 
     ReactDOM.render(
-      React.createElement('App'),
+      React.createElement(App),
       document.getElementById('root')
     );
   </script>

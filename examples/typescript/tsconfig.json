@@ -10,7 +10,8 @@
     "outDir": "dist",
     "target": "esnext",
     "paths": {
-      "react-simple-wysiwyg/*": ["../../src/*"]
+      "react-simple-wysiwyg/*": ["../../src/*"],
+      "react-simple-wysiwyg": ["../../src/index.ts"]
     }
   },
   "include": [
