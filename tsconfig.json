@@ -2,12 +2,14 @@
   "compilerOptions": {
     "declaration": true,
     "jsx": "react",
+    "importHelpers": false,
     "lib": [
       "es6",
       "dom"
     ],
-    "module": "commonjs",
-    "outDir": "lib",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "sourceMap": true,
     "target": "es5"
   },
   "include": [

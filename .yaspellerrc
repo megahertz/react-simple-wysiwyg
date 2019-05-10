@@ -1,4 +1,13 @@
 {
+  "excludeFiles": [
+    ".git",
+    "dist",
+    "lib",
+    "**/node_modules/**"
+  ],
+  "fileExtensions": [
+    ".md"
+  ],
   "dictionary": [
     "CLI",
     "npm",

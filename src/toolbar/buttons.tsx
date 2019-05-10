@@ -72,7 +72,6 @@ function createButton(
   content: ReactNode,
   command: ((selection: Node) => void) | string,
 ): typeof Button {
-  const MemoButton = React.memo(Button);
   ButtonFactory.displayName = title.replace(/\s/g, '');
 
   return withEditorContext<typeof Button>(ButtonFactory);
@@ -86,9 +85,9 @@ function createButton(
     }
 
     return (
-      <MemoButton title={title} {...buttonProps} onClick={action} active={active}>
+      <Button title={title} {...buttonProps} onClick={action} active={active}>
         {content}
-      </MemoButton>
+      </Button>
     );
 
     function action() {
