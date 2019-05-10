@@ -42,7 +42,7 @@ If you need more powerful solution for React, you'd better take a look at:
 
     `npm install react-simple-wysiwyg`
     
-    or [CDN (unpkg.com)](https://unpkg.com/react-simple-wysiwyg@0.0.3/)
+    or [CDN (unpkg.com)](https://unpkg.com/react-simple-wysiwyg/)
    
     `<script src="//unpkg.com/react-simple-wysiwyg"></script>`
     
