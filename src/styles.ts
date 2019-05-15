@@ -3,7 +3,7 @@ import { CSSProperties } from 'react';
 const styles = {
   button: {
     normal: {
-      backgroundColor: 'unset',
+      backgroundColor: 'transparent',
       border: 'none',
       color: '#222',
       height: 24,
@@ -23,7 +23,7 @@ const styles = {
   },
 
   contentEditable: {
-    flex: 1,
+    flex: '1 0 auto',
     outline: 'none',
     padding: 5,
   },
@@ -42,6 +42,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column' as any,
     minHeight: 100,
+    msFlexDirection: 'column',
   },
 
   separator: {

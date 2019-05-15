@@ -13,7 +13,7 @@ export const BtnLink = createButton('Link', '🔗', (selected: Node) => {
   if (selected && selected.nodeName === 'A') {
     document.execCommand('unlink');
   } else {
-    document.execCommand('createLink', false, prompt('URL'));
+    document.execCommand('createLink', false, prompt('URL', ''));
   }
 });
 export const BtnNumberedList = createButton('Numbered list', <OrderedListIcon />, 'insertOrderedList');
