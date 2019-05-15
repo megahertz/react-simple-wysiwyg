@@ -37,7 +37,8 @@ function build(fileName) {
         tsconfig: "tsconfig.json",
         tsconfigOverride: { compilerOptions: {
           declaration: false,
-          target: options.target
+          target: options.target,
+          importHelpers: false,
         }}
       }),
       fileSize(),

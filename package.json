@@ -1,6 +1,6 @@
 {
   "name": "react-simple-wysiwyg",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/index.js",
   "umd:main": "lib/umd/index.umd.js",
@@ -9,7 +9,7 @@
   "unpkg": "lib/umd/index.umd.min.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "rm -rf lib && tsc && tsc -t ES2018 --outDir lib/es --declaration false && rollup -c",
+    "build": "rm -rf lib && tsc && tsc -m es2015 --outDir lib/es --declaration false && rollup -c",
     "pages": "gh-pages -d examples/github.io",
     "lint": "tslint -p tsconfig.json -t verbose",
     "postversion": "git push && git push --tags",
@@ -54,5 +54,8 @@
     "hooks": {
       "pre-commit": "npm test"
     }
+  },
+  "dependencies": {
+    "tslib": "1.x"
   }
 }
