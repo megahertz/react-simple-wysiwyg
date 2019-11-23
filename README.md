@@ -8,8 +8,6 @@ Simple and lightweight React WYSIWYG editor. [Demo](https://megahertz.github.io/
 
 ## Description
 
-**The project is in alpha stage.**
-
 [![Screenshot](docs/resources/screenshot.png)](https://megahertz.github.io/react-simple-wysiwyg/)
 
 It can be helpful if you only need basic text operations. It's:
@@ -46,7 +44,7 @@ If you need more powerful solution for React, you'd better take a look at:
    
     `<script src="//unpkg.com/react-simple-wysiwyg"></script>`
     
- 2. Use it you React component
+ 2. Use the component
  
     ```jsx
     import { DefaultEditor } from 'react-simple-wysiwyg';
