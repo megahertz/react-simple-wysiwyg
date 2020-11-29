@@ -17,6 +17,7 @@ module.exports = {
     lazy: false,
     filename: 'bundle.js',
     public: 'http://localhost:8080',
+    publicPath: '/dist/',
   },
   devtool: 'source-map',
   module: {

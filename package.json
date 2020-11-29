@@ -9,9 +9,11 @@
   "unpkg": "lib/umd/index.umd.min.js",
   "typings": "lib/index.d.ts",
   "scripts": {
+    "start": "npm start --prefix examples/typescript",
     "build": "rm -rf lib && tsc && tsc -m es2015 --outDir lib/es --declaration false && rollup -c",
     "pages": "gh-pages -d examples/github.io",
     "lint": "eslint src examples",
+    "postinstall": "npm install --prefix examples/typescript",
     "postversion": "git push && git push --tags",
     "prepack": "npm run build && npm run test",
     "test": "npm run lint && npm run spell",
