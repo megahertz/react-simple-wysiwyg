@@ -47,14 +47,15 @@ If you need more powerful solution for React, you'd better take a look at:
  2. Use the component
  
     ```jsx
+    import React from 'react';
     import { DefaultEditor } from 'react-simple-wysiwyg';
     
     function App() {
       const [html, setHtml] = React.useState('my <b>HTML</b>');
       
-      const onChange = (e) => {
+      function onChange(e) {
         setHtml(e.target.value);
-      };
+      }
     
       return (
         <DefaultEditor value={html} onChange={onChange} />

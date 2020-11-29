@@ -4,9 +4,9 @@ import { DefaultEditor } from 'react-simple-wysiwyg';
 export default function App() {
   const [html, setHtml] = React.useState('first line <br> <b>second</b> line');
 
-  const onChange = (e) => {
+  function onChange(e) {
     setHtml(e.target.value);
-  };
+  }
 
   return (
     <>
