@@ -1,4 +1,6 @@
-import { ChangeEvent,  HTMLAttributes } from 'react';
+/* eslint-disable react/no-array-index-key */
+
+import { ChangeEvent, HTMLAttributes } from 'react';
 import * as React from 'react';
 import { IEditorContext, withEditorContext } from '../Editor';
 
@@ -41,7 +43,14 @@ function createDropdown(
 }
 
 export function Dropdown(props: IDropdownProps) {
-  const { el, items, selected, selection, styles, ...inputProps } = props;
+  const {
+    el,
+    items,
+    selected,
+    selection,
+    styles,
+    ...inputProps
+  } = props;
 
   const style = { ...styles.dropdown, ...props.style };
 

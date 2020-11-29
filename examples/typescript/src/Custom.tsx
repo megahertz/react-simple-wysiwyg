@@ -1,4 +1,4 @@
-import * as React  from 'react';
+import * as React from 'react';
 import {
   BtnBold,
   BtnItalic,
@@ -8,7 +8,7 @@ import {
 } from 'react-simple-wysiwyg';
 
 export default function Custom() {
-  const [ value, setValue ] = React.useState('simple text');
+  const [value, setValue] = React.useState('simple text');
 
   const onChange = (e) => {
     setValue(e.target.value);

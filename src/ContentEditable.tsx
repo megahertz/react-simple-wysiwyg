@@ -15,13 +15,11 @@ export default class ContentEditable extends Component<ICEProps> {
 
     this.previousValue = props.value;
 
-    this.onChange      = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.setElementRef = this.setElementRef.bind(this);
   }
 
   shouldComponentUpdate(nextProps: ICEProps): boolean {
-    const props = this.props;
-
     if (!this.el) {
       return true;
     }
@@ -30,7 +28,11 @@ export default class ContentEditable extends Component<ICEProps> {
       return true;
     }
 
-    return !compare(props, nextProps, ['disabled', 'tagName', 'className']);
+    return !compare(
+      this.props,
+      nextProps,
+      ['disabled', 'tagName', 'className'],
+    );
   }
 
   componentDidUpdate() {
@@ -44,13 +46,6 @@ export default class ContentEditable extends Component<ICEProps> {
     }
 
     replaceCaret(this.el);
-  }
-
-  setElementRef(el) {
-    const { contentEditableRef } = this.props;
-    this.el = el;
-
-    contentEditableRef && contentEditableRef(el);
   }
 
   onChange(event: React.FormEvent<HTMLElement>) {
@@ -67,8 +62,20 @@ export default class ContentEditable extends Component<ICEProps> {
     }
   }
 
+  setElementRef(el) {
+    const { contentEditableRef } = this.props;
+    this.el = el;
+
+    contentEditableRef && contentEditableRef(el);
+  }
+
   render() {
-    const { contentEditableRef, tagName, value, ...props } = this.props;
+    const {
+      contentEditableRef,
+      tagName,
+      value,
+      ...props
+    } = this.props;
 
     return createElement(tagName || 'div', {
       ...props,

@@ -1,11 +1,10 @@
+/* eslint-disable no-continue,no-restricted-syntax,no-plusplus */
 export function compare<T>(a: T, b: T, keys: Array<keyof T>): boolean {
-  return keys.every((key) => {
-    return a[key] === b[key];
-  });
+  return keys.every((key) => a[key] === b[key]);
 }
 
-export function deepMerge<T>(target, ...sources: T[]): T {
-  if (!sources.length)  {
+export function deepMerge<T>(target: any, ...sources: T[]): T {
+  if (!sources.length) {
     return target;
   }
 
@@ -13,7 +12,7 @@ export function deepMerge<T>(target, ...sources: T[]): T {
 
   if (isObject(target) && isObject(source)) {
     for (const key in source) {
-      if (!source.hasOwnProperty(key)) {
+      if (!Object.prototype.hasOwnProperty.call(source, key)) {
         continue;
       }
 
@@ -57,6 +56,8 @@ export function getSelectedNode(): Node {
   if (selection.rangeCount > 0) {
     return selection.getRangeAt(0).startContainer.parentNode;
   }
+
+  return null;
 }
 
 function isObject(item) {

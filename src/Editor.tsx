@@ -19,8 +19,8 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
 
     this.state = {};
 
-    this.onClickOutside        = this.onClickOutside.bind(this);
-    this.onTextSelect          = this.onTextSelect.bind(this);
+    this.onClickOutside = this.onClickOutside.bind(this);
+    this.onTextSelect = this.onTextSelect.bind(this);
     this.setContentEditableRef = this.setContentEditableRef.bind(this);
   }
 
@@ -30,11 +30,6 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.onClickOutside);
-  }
-
-  setContentEditableRef(el: HTMLElement) {
-    this.setState({ contentEditable: el });
-    this.props.contentEditableRef && this.props.contentEditableRef(el);
   }
 
   onClickOutside(event: MouseEvent) {
@@ -56,6 +51,11 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
     this.setState({ selection: getSelectedNode() });
   }
 
+  setContentEditableRef(el: HTMLElement) {
+    this.setState({ contentEditable: el });
+    this.props.contentEditableRef && this.props.contentEditableRef(el);
+  }
+
   render() {
     const { children, styles, ...props } = this.props;
     const { contentEditable, selection } = this.state;
@@ -69,7 +69,7 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
     };
 
     return (
-      <div style={context.styles.editor}>
+      <div style={context.styles.editor as any}>
         <EditorContext.Provider value={context}>
           {children}
           <ContentEditable
@@ -87,9 +87,8 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
 export function withEditorContext<T extends ComponentType<any>>(
   Component: T,
 ): T {
-
-  WithEditorContext.displayName =
-    `withEditorContext(${Component.displayName || Component.name})`;
+  const childName = Component.displayName || Component.name;
+  WithEditorContext.displayName = `withEditorContext(${childName})`;
 
   return WithEditorContext as any;
 

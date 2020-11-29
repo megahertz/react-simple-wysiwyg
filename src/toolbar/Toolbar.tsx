@@ -7,7 +7,7 @@ export default function Toolbar(props: React.HTMLAttributes<HTMLDivElement>) {
   };
 
   return (
-    <div {...props} style={rootStyle}/>
+    <div {...props} style={rootStyle} />
   );
 }
 

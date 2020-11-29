@@ -1,3 +1,5 @@
+/* eslint-disable strict,@typescript-eslint/no-var-requires,quote-props */
+
 'use strict';
 
 const path = require('path');
@@ -33,8 +35,7 @@ module.exports = {
     alias: {
       'react-simple-wysiwyg': path.resolve('../../src'),
     },
-    extensions: [".ts", ".tsx", '.js'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   stats: 'minimal',
 };
-
