@@ -3,7 +3,7 @@
 const fileSize = require('rollup-plugin-filesize');
 const nodeResolve = require('rollup-plugin-node-resolve');
 const typeScript = require('rollup-plugin-typescript2');
-const uglify = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 
 module.exports = [
   build('index.umd.js'),
@@ -42,7 +42,7 @@ function build(fileName) {
         }}
       }),
       fileSize(),
-      options.min && uglify.uglify({ ie8: false }),
+      options.min && terser(),
     ]
   };
 }
