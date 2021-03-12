@@ -1,5 +1,6 @@
-export { default as ContentEditable } from './ContentEditable';
-export { default as DefaultEditor } from './DefaultEditor';
-export { default as Editor } from './Editor';
-export { IEditorStyles } from './styles';
-export * from './toolbar';
+export { ContentEditable } from './components/ContentEditable';
+export { DefaultEditor } from './DefaultEditor';
+export { Editor } from './components/Editor';
+export { Toolbar } from './components/Toolbar';
+export * from './components/Buttons';
+export * from './components/Dropdown';

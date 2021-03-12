@@ -47,7 +47,7 @@ If you need more powerful solution for React, you'd better take a look at:
  2. Use the component
  
     ```jsx
-    import React from 'react';
+    import * as React from 'react';
     import { DefaultEditor } from 'react-simple-wysiwyg';
     
     function App() {

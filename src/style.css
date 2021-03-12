@@ -1,0 +1,57 @@
+.rswEditor {
+  border: 1px solid #ddd;
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100;
+  overflow: hidden;
+}
+
+.rswCE {
+  flex: 1 0 auto;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.rswSeparator {
+  display: flex;
+  align-self: stretch;
+  border-right: 1px solid #ddd;
+  margin: 0 0.5rem;
+}
+
+.rswDD {
+  outline: none;
+  box-sizing: border-box;
+}
+
+.rswBtn {
+  cursor: pointer;
+
+  background: transparent;
+  color: #222;
+
+  outline: none;
+  border: 0;
+
+  height: 2em;
+  width: 2em;
+  font-size: 1em;
+
+  padding: 0;
+}
+
+.rswBtn:hover {
+  background: #eaeaea;
+}
+
+.rswBtn[data-active='true'] {
+  background: #e0e0e0;
+}
+
+.rswToolbar {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}

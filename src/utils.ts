@@ -3,35 +3,7 @@ export function compare<T>(a: T, b: T, keys: Array<keyof T>): boolean {
   return keys.every((key) => a[key] === b[key]);
 }
 
-export function deepMerge<T>(target: any, ...sources: T[]): T {
-  if (!sources.length) {
-    return target;
-  }
-
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (!Object.prototype.hasOwnProperty.call(source, key)) {
-        continue;
-      }
-
-      if (isObject(source[key])) {
-        if (!target[key]) {
-          Object.assign(target, { [key]: {} });
-        }
-
-        deepMerge(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
-
-  return deepMerge(target, ...sources);
-}
-
-export function findLastTextNode(node: Node): Node | null {
+function findLastTextNode(node: Node): Node | null {
   if (node.nodeType === Node.TEXT_NODE) {
     return node;
   }
@@ -58,10 +30,6 @@ export function getSelectedNode(): Node {
   }
 
   return null;
-}
-
-function isObject(item) {
-  return (item && typeof item === 'object' && !Array.isArray(item));
 }
 
 export function normalizeHtml(str: string): string {

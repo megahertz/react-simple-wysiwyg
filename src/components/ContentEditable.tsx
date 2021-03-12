@@ -1,12 +1,13 @@
 import { Component, createElement, HTMLAttributes } from 'react';
 import * as React from 'react';
-import { compare, normalizeHtml, replaceCaret } from './utils';
+
+import { compare, normalizeHtml, replaceCaret } from '../utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for an html element with editable contents.
  */
-export default class ContentEditable extends Component<ICEProps> {
+export class ContentEditable extends Component<ICEProps> {
   el: HTMLElement;
   previousValue: string;
 
@@ -28,11 +29,11 @@ export default class ContentEditable extends Component<ICEProps> {
       return true;
     }
 
-    return !compare(
-      this.props,
-      nextProps,
-      ['disabled', 'tagName', 'className'],
-    );
+    return !compare(this.props, nextProps, [
+      'disabled',
+      'tagName',
+      'className',
+    ]);
   }
 
   componentDidUpdate() {
@@ -71,10 +72,7 @@ export default class ContentEditable extends Component<ICEProps> {
 
   render() {
     const {
-      contentEditableRef,
-      tagName,
-      value,
-      ...props
+      contentEditableRef, tagName, value, ...props
     } = this.props;
 
     return createElement(tagName || 'div', {

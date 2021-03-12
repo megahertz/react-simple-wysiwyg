@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Editor, { IEditorProps } from './Editor';
+
 import {
   BtnBold,
   BtnBulletList,
@@ -8,14 +8,15 @@ import {
   BtnLink,
   BtnNumberedList,
   BtnRedo,
-  BtnStyles,
   BtnUnderline,
   BtnUndo,
-  Separator,
-  Toolbar,
-} from './toolbar';
+} from './components/Buttons';
+import { BtnStyles } from './components/Dropdown';
+import { Editor, IEditorProps } from './components/Editor';
+import { Separator } from './components/Separator';
+import { Toolbar } from './components/Toolbar';
 
-export default function DefaultEditor(props: IEditorProps) {
+export function DefaultEditor(props: IEditorProps) {
   return (
     <Editor {...props}>
       <Toolbar>
