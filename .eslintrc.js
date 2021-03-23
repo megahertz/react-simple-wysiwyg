@@ -4,6 +4,7 @@ module.exports = {
   root: true,
 
   extends: [
+    'prettier',
     'airbnb-typescript',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
@@ -16,9 +17,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
 
-  plugins: [
-    '@typescript-eslint',
-  ],
+  plugins: ['prettier', '@typescript-eslint'],
 
   settings: {
     'import/core-modules': ['react', 'react-dom'],
@@ -33,5 +32,6 @@ module.exports = {
     'max-len': [2, { code: 80 }],
     'react/destructuring-assignment': 0,
     'react/jsx-props-no-spreading': 0,
-  }
+    'import/prefer-default-export': 0,
+  },
 };

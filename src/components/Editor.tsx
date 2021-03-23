@@ -1,3 +1,5 @@
+import '../style.css';
+
 import {
   ComponentType,
   createContext,
@@ -5,15 +7,13 @@ import {
   SyntheticEvent,
 } from 'react';
 import * as React from 'react';
-import ContentEditable, { ICEProps } from './ContentEditable';
-import defaultStyles, { IEditorStyles, IStyles } from './styles';
-import { deepMerge, getSelectedNode } from './utils';
 
-export const EditorContext = createContext<IEditorContext>({
-  styles: defaultStyles,
-});
+import { getSelectedNode } from '../utils';
+import { ContentEditable, ICEProps } from './ContentEditable';
 
-export default class Editor extends PureComponent<IEditorProps, IState> {
+export const EditorContext = createContext<IEditorContext>({});
+
+export class Editor extends PureComponent<IEditorProps, IState> {
   constructor(props: IEditorProps) {
     super(props);
 
@@ -57,26 +57,23 @@ export default class Editor extends PureComponent<IEditorProps, IState> {
   }
 
   render() {
-    const { children, styles, ...props } = this.props;
+    const { children, ...props } = this.props;
     const { contentEditable, selection } = this.state;
-
-    const allStyles = deepMerge({}, defaultStyles, styles as any);
 
     const context: IEditorContext = {
       el: contentEditable,
       selection,
-      styles: allStyles,
     };
 
     return (
-      <div style={context.styles.editor as any}>
+      <div className="rswEditor">
         <EditorContext.Provider value={context}>
           {children}
           <ContentEditable
             {...props}
             contentEditableRef={this.setContentEditableRef}
             onSelect={this.onTextSelect}
-            style={allStyles.contentEditable}
+            className="rswCE"
           />
         </EditorContext.Provider>
       </div>
@@ -96,26 +93,19 @@ export function withEditorContext<T extends ComponentType<any>>(
     return (
       <EditorContext.Consumer>
         {(context: IEditorContext) => (
-          <Component
-            {...props}
-            el={context.el}
-            selection={context.selection}
-            styles={context.styles}
-          />
+          <Component {...props} el={context.el} selection={context.selection} />
         )}
       </EditorContext.Consumer>
     );
   }
 }
 
-export interface IEditorProps extends ICEProps {
-  styles?: IEditorStyles;
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IEditorProps extends ICEProps {}
 
 export interface IEditorContext {
   el?: HTMLElement;
   selection?: Node;
-  styles?: IStyles;
 }
 
 interface IState {

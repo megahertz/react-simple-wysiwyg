@@ -1,10 +1,6 @@
 import * as React from 'react';
 import {
-  BtnBold,
-  BtnItalic,
-  Editor,
-  IEditorStyles,
-  Toolbar,
+  BtnBold, BtnItalic, Editor, Toolbar,
 } from 'react-simple-wysiwyg';
 
 export default function Custom() {
@@ -15,7 +11,7 @@ export default function Custom() {
   }
 
   return (
-    <Editor value={value} onChange={onChange} styles={styles}>
+    <Editor value={value} onChange={onChange}>
       <Toolbar>
         <BtnBold />
         <BtnItalic />
@@ -23,9 +19,3 @@ export default function Custom() {
     </Editor>
   );
 }
-
-const styles: IEditorStyles = {
-  editor: {
-    height: 200,
-  },
-};

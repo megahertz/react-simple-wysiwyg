@@ -6,7 +6,7 @@
   "umd:main": "lib/umd/index.umd.js",
   "module": "lib/es/index.js",
   "jsnext:main": "lib/es/index.js",
-  "unpkg": "lib/umd/index.umd.min.js",
+  "unpkg": "lib/umd/index.umd.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "npm start --prefix examples/typescript",
@@ -34,24 +34,28 @@
   "bugs": "https://github.com/megahertz/react-simple-wysiwyg/issues",
   "homepage": "https://github.com/megahertz/react-simple-wysiwyg#readme",
   "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.8.2",
-    "eslint": "^7.14.0",
-    "eslint-config-airbnb-typescript": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@types/react": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "gh-pages": "^3.1.0",
-    "husky": "^4.3.0",
+    "husky": "4",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "rollup": "^2.34.0",
-    "rollup-plugin-filesize": "^9.0.2",
-    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup": "^2.41.2",
+    "rollup-plugin-filesize": "^9.1.1",
+    "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "typescript": "^4.1.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.2.3",
     "yaspeller-ci": "^1.0.2"
   },
   "peerDependencies": {
@@ -63,6 +67,13 @@
     }
   },
   "dependencies": {
-    "tslib": "2.x"
+    "tslib": "^2.1.0"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
