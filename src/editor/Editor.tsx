@@ -30,10 +30,19 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
     editorState.update({ $selection: getSelectedNode() });
   }
 
+  function setContentEditableRef($el: HTMLElement) {
+    editorState.update({ $el });
+  }
+
   return (
     <div className="rsw-editor">
       {children}
-      <ContentEditable {...rest} onSelect={onTextSelect} className="rsw-ce" />
+      <ContentEditable
+        {...rest}
+        contentEditableRef={setContentEditableRef}
+        onSelect={onTextSelect}
+        className="rsw-ce"
+      />
     </div>
   );
 }

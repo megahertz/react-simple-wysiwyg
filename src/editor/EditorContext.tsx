@@ -9,10 +9,12 @@ export function EditorProvider({ children }: { children: ReactNode }) {
   });
 
   function update(attrs) {
-    setState({
-      ...state,
-      ...attrs,
-      update,
+    setState((prevState) => {
+      return {
+        ...prevState,
+        ...attrs,
+        date: Date.now(),
+      };
     });
   }
 

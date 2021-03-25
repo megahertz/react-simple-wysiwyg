@@ -1,15 +1,11 @@
 import { Component, createElement, FormEvent, HTMLAttributes } from 'react';
 import { compare, normalizeHtml, replaceCaret } from '../utils';
-import { EditorContext } from './EditorContext';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for an html element with editable contents.
  */
 export class ContentEditable extends Component<ContentEditableProps> {
-  // eslint-disable-next-line react/static-property-placement
-  static contextType = EditorContext;
-
   el: HTMLElement;
   previousValue: string;
 
@@ -65,13 +61,15 @@ export class ContentEditable extends Component<ContentEditableProps> {
     }
   }
 
-  setElementRef($el) {
-    this.el = $el;
-    this.context.update({ $el });
+  setElementRef(el) {
+    const { contentEditableRef } = this.props;
+    this.el = el;
+
+    contentEditableRef && contentEditableRef(el);
   }
 
   render() {
-    const { tagName, value, ...props } = this.props;
+    const { contentEditableRef, tagName, value, ...props } = this.props;
 
     return createElement(tagName || 'div', {
       ...props,
@@ -88,6 +86,7 @@ export class ContentEditable extends Component<ContentEditableProps> {
 
 export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean;
+  contentEditableRef?: (el: HTMLElement) => void;
   tagName?: string;
   value?: string;
 }
