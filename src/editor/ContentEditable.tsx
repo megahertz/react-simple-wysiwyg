@@ -1,4 +1,4 @@
-import { Component, createElement, HTMLAttributes } from 'react';
+import { Component, createElement, FormEvent, HTMLAttributes } from 'react';
 import { compare, normalizeHtml, replaceCaret } from '../utils';
 
 /**
@@ -47,7 +47,7 @@ export class ContentEditable extends Component<ICEProps> {
     replaceCaret(this.el);
   }
 
-  onChange(event: React.FormEvent<HTMLElement>) {
+  onChange(event: FormEvent<HTMLElement>) {
     if (!this.el) {
       return;
     }
