@@ -1,18 +1,13 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "jsx": "react",
-    "importHelpers": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "jsx": "react-jsx",
+    "lib": ["es6", "dom"],
     "moduleResolution": "node",
     "outDir": "./lib",
+    "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES2019"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

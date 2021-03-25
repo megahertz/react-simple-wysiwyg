@@ -6,8 +6,6 @@ import {
   PureComponent,
   SyntheticEvent,
 } from 'react';
-import * as React from 'react';
-
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ICEProps } from './ContentEditable';
 

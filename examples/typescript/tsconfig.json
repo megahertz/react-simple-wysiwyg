@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "jsx": "react",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "jsx": "react-jsx",
+    "lib": ["es6", "dom"],
     "moduleResolution": "node",
     "outDir": "dist",
+    "skipLibCheck": true,
     "target": "es5",
     "paths": {
       "react-simple-wysiwyg/*": ["../../src/*"],
       "react-simple-wysiwyg": ["../../src/index.ts"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

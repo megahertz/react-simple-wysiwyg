@@ -1,3 +1,3 @@
-import * as React from 'react';
-
-export const Separator = () => <div className="rswSeparator" />;
+export function Separator() {
+  return <div className="rswSeparator" />;
+}

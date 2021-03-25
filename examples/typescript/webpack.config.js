@@ -6,6 +6,7 @@ const path = require('path');
 
 module.exports = {
   entry: ['./src/index.tsx'],
+  mode: process.env.NODE_ENV || 'development',
   output: {
     filename: 'bundle.js',
     path: path.resolve('dist'),
@@ -33,7 +34,7 @@ module.exports = {
     ],
   },
   externals: {
-    'react': 'React',
+    react: 'React',
     'react-dom': 'ReactDOM',
   },
   resolve: {

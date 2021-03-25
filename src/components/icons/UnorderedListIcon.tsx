@@ -1,7 +1,3 @@
-/* eslint-disable max-len */
-
-import * as React from 'react';
-
 export default function UnorderedListIcon() {
   return (
     <svg

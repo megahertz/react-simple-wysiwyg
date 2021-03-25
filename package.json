@@ -42,8 +42,10 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-tsc": "^2.0.0",
     "gh-pages": "^3.1.0",
     "husky": "4",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -60,8 +62,16 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test"
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx)": [
+      "eslint --fix --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]' --ignore-pattern examples"
+    ],
+    "*.+(json|css)": [
+      "prettier --write"
+    ]
   },
   "prettier": {
     "printWidth": 80,

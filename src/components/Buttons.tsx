@@ -1,6 +1,4 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import * as React from 'react';
-
 import { IEditorContext, withEditorContext } from './Editor';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
@@ -47,7 +45,7 @@ export const BtnBulletList = createButton(
 
 export interface IButtonProps
   extends HTMLAttributes<HTMLButtonElement>,
-  IEditorContext {}
+    IEditorContext {}
 
 function createButton(
   title: string,

@@ -1,6 +1,4 @@
 import { ChangeEvent, HTMLAttributes } from 'react';
-import * as React from 'react';
-
 import { IEditorContext, withEditorContext } from './Editor';
 
 export const BtnStyles = createDropdown('Styles', [
@@ -64,7 +62,7 @@ type IDropDownItem = any[];
 
 export interface IDropdownProps
   extends HTMLAttributes<HTMLSelectElement>,
-  IEditorContext {
+    IEditorContext {
   selected?: number;
   items?: IDropDownItem;
 }

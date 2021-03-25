@@ -1,6 +1,4 @@
 import { Component, createElement, HTMLAttributes } from 'react';
-import * as React from 'react';
-
 import { compare, normalizeHtml, replaceCaret } from '../utils';
 
 /**
@@ -71,9 +69,7 @@ export class ContentEditable extends Component<ICEProps> {
   }
 
   render() {
-    const {
-      contentEditableRef, tagName, value, ...props
-    } = this.props;
+    const { contentEditableRef, tagName, value, ...props } = this.props;
 
     return createElement(tagName || 'div', {
       ...props,
