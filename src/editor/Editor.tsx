@@ -1,4 +1,4 @@
-import '../style.css';
+import '../styles.css';
 
 import {
   ComponentType,
@@ -64,14 +64,14 @@ export class Editor extends PureComponent<IEditorProps, IState> {
     };
 
     return (
-      <div className="rswEditor">
+      <div className="rsw-editor">
         <EditorContext.Provider value={context}>
           {children}
           <ContentEditable
             {...props}
             contentEditableRef={this.setContentEditableRef}
             onSelect={this.onTextSelect}
-            className="rswCE"
+            className="rsw-ce"
           />
         </EditorContext.Provider>
       </div>

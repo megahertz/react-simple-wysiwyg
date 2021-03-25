@@ -8,11 +8,11 @@ import {
   BtnRedo,
   BtnUnderline,
   BtnUndo,
-} from './components/Buttons';
-import { BtnStyles } from './components/Dropdown';
-import { Editor, IEditorProps } from './components/Editor';
-import { Separator } from './components/Separator';
-import { Toolbar } from './components/Toolbar';
+} from '../toolbar/Buttons';
+import { BtnStyles } from '../toolbar/Dropdown';
+import { Editor, IEditorProps } from './Editor';
+import { Separator } from '../toolbar/Separator';
+import { Toolbar } from '../toolbar/Toolbar';
 
 export function DefaultEditor(props: IEditorProps) {
   return (

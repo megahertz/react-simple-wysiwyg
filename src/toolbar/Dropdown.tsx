@@ -1,5 +1,5 @@
 import { ChangeEvent, HTMLAttributes } from 'react';
-import { IEditorContext, withEditorContext } from './Editor';
+import { IEditorContext, withEditorContext } from '../editor/Editor';
 
 export const BtnStyles = createDropdown('Styles', [
   ['Normal', 'formatBlock', 'DIV'],
@@ -47,7 +47,7 @@ export function Dropdown({
   ...inputProps
 }: IDropdownProps) {
   return (
-    <select {...inputProps} value={selected} className="rswDD">
+    <select {...inputProps} value={selected} className="rsw-dd">
       <option hidden>{inputProps.title}</option>
       {items.map((item, index) => (
         <option key={item[2]} value={index}>

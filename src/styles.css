@@ -1,4 +1,4 @@
-.rswEditor {
+.rsw-editor {
   border: 1px solid #ddd;
   border-radius: 0.375rem;
   display: flex;
@@ -7,51 +7,47 @@
   overflow: hidden;
 }
 
-.rswCE {
+.rsw-ce {
   flex: 1 0 auto;
   outline: none;
   padding: 0.5rem;
 }
 
-.rswSeparator {
-  display: flex;
+.rsw-separator {
   align-self: stretch;
   border-right: 1px solid #ddd;
+  display: flex;
   margin: 0 0.5rem;
 }
 
-.rswDD {
-  outline: none;
+.rsw-dd {
   box-sizing: border-box;
-}
-
-.rswBtn {
-  cursor: pointer;
-
-  background: transparent;
-  color: #222;
-
   outline: none;
-  border: 0;
-
-  height: 2em;
-  width: 2em;
-  font-size: 1em;
-
-  padding: 0;
 }
 
-.rswBtn:hover {
+.rsw-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: #222;
+  font-size: 1em;
+  height: 2em;
+  outline: none;
+  padding: 0;
+  width: 2em;
+}
+
+.rsw-btn:hover {
   background: #eaeaea;
 }
 
-.rswBtn[data-active='true'] {
+.rsw-btn[data-active='true'] {
   background: #e0e0e0;
 }
 
-.rswToolbar {
-  display: flex;
+.rsw-toolbar {
   align-items: center;
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
+  display: flex;
 }

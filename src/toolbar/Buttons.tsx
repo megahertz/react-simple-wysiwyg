@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { IEditorContext, withEditorContext } from './Editor';
+import { IEditorContext, withEditorContext } from '../editor/Editor';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
 
@@ -69,7 +69,7 @@ function createButton(
         type="button"
         title={title}
         {...buttonProps}
-        className="rswBtn"
+        className="rsw-btn"
         onMouseDown={action}
         data-active={active}
       >
