@@ -1,4 +1,3 @@
-import nodeResolve from '@rollup/plugin-node-resolve';
 import fileSize from 'rollup-plugin-filesize';
 import styles from 'rollup-plugin-styles';
 import { terser } from 'rollup-plugin-terser';
@@ -13,26 +12,28 @@ export default [
     output: [
       {
         file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: 'es',
-        sourcemap: true,
-      },
-      {
-        file: packageJson['umd:main'],
         format: 'umd',
         sourcemap: true,
         name: 'ReactSimpleWysiwyg',
       },
+      {
+        file: packageJson.unpkg,
+        format: 'umd',
+        sourcemap: true,
+        name: 'ReactSimpleWysiwyg',
+        plugins: [terser({ output: { comments: false } })]
+      },
     ],
     plugins: [
-      nodeResolve(),
-      typescript(),
+      typescript({
+        tsconfigOverride: {
+          compilerOptions: {
+            target: 'ES5',
+            declaration: false,
+          },
+        }
+      }),
       styles(),
-      terser({ output: { comments: false } }),
       fileSize(),
     ],
     watch: {

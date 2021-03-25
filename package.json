@@ -1,23 +1,21 @@
 {
   "name": "react-simple-wysiwyg",
-  "version": "1.0.2",
+  "version": "2.0.0-alpha.1",
   "description": "Simple and lightweight React WYSIWYG editor",
-  "main": "lib/index.js",
-  "umd:main": "lib/umd/index.umd.js",
-  "module": "lib/es/index.js",
-  "jsnext:main": "lib/es/index.js",
-  "unpkg": "lib/umd/index.umd.js",
+  "main": "lib/umd/index.js",
+  "module": "lib/index.js",
+  "unpkg": "lib/umd/index.min.js",
+  "type": "module",
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "npm start --prefix examples/typescript",
-    "build": "rm -rf lib && tsc && tsc -m es2015 --outDir lib/es --declaration false && rollup -c",
+    "build": "rm -rf lib && tsc && rollup -c",
     "pages": "gh-pages -d examples/github.io",
     "lint": "eslint src examples",
     "postversion": "git push && git push --tags",
     "prepare": "npm install --prefix examples/typescript",
     "prepack": "npm run build && npm run test",
-    "test": "npm run lint && npm run spell",
-    "spell": "yaspeller-ci ."
+    "test": "npm run lint && spech"
   },
   "repository": "megahertz/react-simple-wysiwyg",
   "files": [
@@ -34,7 +32,6 @@
   "bugs": "https://github.com/megahertz/react-simple-wysiwyg/issues",
   "homepage": "https://github.com/megahertz/react-simple-wysiwyg#readme",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^11.2.0",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "eslint": "^7.21.0",
@@ -55,8 +52,8 @@
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.2.3",
-    "yaspeller-ci": "^1.0.2"
+    "spech": "^0.2.1",
+    "typescript": "^4.2.3"
   },
   "peerDependencies": {
     "react": ">=16.8"
@@ -65,9 +62,6 @@
     "hooks": {
       "pre-commit": "npm test"
     }
-  },
-  "dependencies": {
-    "tslib": "^2.1.0"
   },
   "prettier": {
     "printWidth": 80,
