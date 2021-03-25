@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { IEditorContext, withEditorContext } from '../editor/Editor';
+import { useEditorState } from '../editor/EditorContext';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
 
@@ -43,9 +43,7 @@ export const BtnBulletList = createButton(
   'insertUnorderedList',
 );
 
-export interface IButtonProps
-  extends HTMLAttributes<HTMLButtonElement>,
-    IEditorContext {}
+export type IButtonProps = HTMLAttributes<HTMLButtonElement>;
 
 function createButton(
   title: string,
@@ -54,21 +52,21 @@ function createButton(
 ) {
   ButtonFactory.displayName = title.replace(/\s/g, '');
 
-  return withEditorContext(ButtonFactory);
+  return ButtonFactory;
 
   function ButtonFactory(props: IButtonProps) {
-    const { selection, ...buttonProps } = props;
+    const { $selection } = useEditorState();
 
     let active = false;
     if (typeof command === 'string') {
-      active = !!selection && document.queryCommandState(command);
+      active = !!$selection && document.queryCommandState(command);
     }
 
     return (
       <button
         type="button"
         title={title}
-        {...buttonProps}
+        {...props}
         className="rsw-btn"
         onMouseDown={action}
         data-active={active}
@@ -79,7 +77,7 @@ function createButton(
 
     function action() {
       if (typeof command === 'function') {
-        command(selection);
+        command($selection);
       } else {
         document.execCommand(command);
       }

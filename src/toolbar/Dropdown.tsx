@@ -1,5 +1,5 @@
 import { ChangeEvent, HTMLAttributes } from 'react';
-import { IEditorContext, withEditorContext } from '../editor/Editor';
+import { useEditorState } from '../editor/EditorContext';
 
 export const BtnStyles = createDropdown('Styles', [
   ['Normal', 'formatBlock', 'DIV'],
@@ -14,13 +14,13 @@ function createDropdown(
 ): typeof Dropdown {
   DropdownFactory.displayName = title;
 
-  return withEditorContext<typeof Dropdown>(DropdownFactory);
+  return DropdownFactory;
 
   function DropdownFactory(props: IDropdownProps) {
-    const { selection, ...ddProps } = props;
+    const { $selection } = useEditorState();
 
     return (
-      <Dropdown {...ddProps} onChange={onChange} title={title} items={items} />
+      <Dropdown {...props} onChange={onChange} title={title} items={items} />
     );
 
     function onChange(e: ChangeEvent<HTMLSelectElement>) {
@@ -31,7 +31,7 @@ function createDropdown(
       e.target.selectedIndex = 0;
 
       if (typeof command === 'function') {
-        command(selection);
+        command($selection);
       } else {
         document.execCommand(command, false, commandArgument);
       }
@@ -39,13 +39,7 @@ function createDropdown(
   }
 }
 
-export function Dropdown({
-  el,
-  items,
-  selected,
-  selection,
-  ...inputProps
-}: IDropdownProps) {
+export function Dropdown({ items, selected, ...inputProps }: IDropdownProps) {
   return (
     <select {...inputProps} value={selected} className="rsw-dd">
       <option hidden>{inputProps.title}</option>
@@ -60,9 +54,7 @@ export function Dropdown({
 
 type IDropDownItem = any[];
 
-export interface IDropdownProps
-  extends HTMLAttributes<HTMLSelectElement>,
-    IEditorContext {
+export interface IDropdownProps extends HTMLAttributes<HTMLSelectElement> {
   selected?: number;
   items?: IDropDownItem;
 }

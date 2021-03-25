@@ -1,15 +1,19 @@
 import { Component, createElement, FormEvent, HTMLAttributes } from 'react';
 import { compare, normalizeHtml, replaceCaret } from '../utils';
+import { EditorContext } from './EditorContext';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for an html element with editable contents.
  */
-export class ContentEditable extends Component<ICEProps> {
+export class ContentEditable extends Component<ContentEditableProps> {
+  // eslint-disable-next-line react/static-property-placement
+  static contextType = EditorContext;
+
   el: HTMLElement;
   previousValue: string;
 
-  constructor(props: ICEProps) {
+  constructor(props: ContentEditableProps) {
     super(props);
 
     this.previousValue = props.value;
@@ -18,7 +22,7 @@ export class ContentEditable extends Component<ICEProps> {
     this.setElementRef = this.setElementRef.bind(this);
   }
 
-  shouldComponentUpdate(nextProps: ICEProps): boolean {
+  shouldComponentUpdate(nextProps: ContentEditableProps): boolean {
     if (!this.el) {
       return true;
     }
@@ -61,15 +65,13 @@ export class ContentEditable extends Component<ICEProps> {
     }
   }
 
-  setElementRef(el) {
-    const { contentEditableRef } = this.props;
-    this.el = el;
-
-    contentEditableRef && contentEditableRef(el);
+  setElementRef($el) {
+    this.el = $el;
+    this.context.update({ $el });
   }
 
   render() {
-    const { contentEditableRef, tagName, value, ...props } = this.props;
+    const { tagName, value, ...props } = this.props;
 
     return createElement(tagName || 'div', {
       ...props,
@@ -84,9 +86,8 @@ export class ContentEditable extends Component<ICEProps> {
   }
 }
 
-export interface ICEProps extends HTMLAttributes<HTMLElement> {
+export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean;
-  contentEditableRef?: (el: HTMLElement) => void;
   tagName?: string;
   value?: string;
 }
