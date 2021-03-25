@@ -1,3 +1,5 @@
-export function Toolbar(props: React.HTMLAttributes<HTMLDivElement>) {
+import { HTMLAttributes } from 'react';
+
+export function Toolbar(props: HTMLAttributes<HTMLDivElement>) {
   return <div {...props} className="rsw-toolbar" />;
 }
