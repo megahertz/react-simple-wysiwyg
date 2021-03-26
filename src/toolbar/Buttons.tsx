@@ -1,9 +1,16 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { useEditorState } from '../editor/EditorContext';
+import { EditorState, useEditorState } from '../editor/EditorContext';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
 
 export const BtnBold = createButton('Bold', '𝐁', 'bold');
+
+export const BtnBulletList = createButton(
+  'Bullet list',
+  <UnorderedListIcon />,
+  'insertUnorderedList',
+);
+
 export const BtnClearFormatting = createButton(
   'Clear formatting',
   'T̲ₓ',
@@ -12,8 +19,8 @@ export const BtnClearFormatting = createButton(
 
 export const BtnItalic = createButton('Italic', '𝑰', 'italic');
 
-export const BtnLink = createButton('Link', '🔗', (selected: Node) => {
-  if (selected && selected.nodeName === 'A') {
+export const BtnLink = createButton('Link', '🔗', ({ $selection }) => {
+  if ($selection?.nodeName === 'A') {
     document.execCommand('unlink');
   } else {
     // eslint-disable-next-line no-alert
@@ -37,29 +44,30 @@ export const BtnUnderline = createButton(
 
 export const BtnUndo = createButton('Undo', '↶', 'undo');
 
-export const BtnBulletList = createButton(
-  'Bullet list',
-  <UnorderedListIcon />,
-  'insertUnorderedList',
-);
-
-export type IButtonProps = HTMLAttributes<HTMLButtonElement>;
-
 function createButton(
   title: string,
   content: ReactNode,
-  command: ((selection: Node) => void) | string,
+  command: ((state: EditorState) => void) | string,
 ) {
   ButtonFactory.displayName = title.replace(/\s/g, '');
 
   return ButtonFactory;
 
-  function ButtonFactory(props: IButtonProps) {
-    const { $selection } = useEditorState();
+  function ButtonFactory(props: HTMLAttributes<HTMLButtonElement>) {
+    const editorState = useEditorState();
+    const { $selection } = editorState;
 
     let active = false;
     if (typeof command === 'string') {
       active = !!$selection && document.queryCommandState(command);
+    }
+
+    function onAction() {
+      if (typeof command === 'function') {
+        command(editorState);
+      } else {
+        document.execCommand(command);
+      }
     }
 
     return (
@@ -68,19 +76,11 @@ function createButton(
         title={title}
         {...props}
         className="rsw-btn"
-        onMouseDown={action}
+        onMouseDown={onAction}
         data-active={active}
       >
         {content}
       </button>
     );
-
-    function action() {
-      if (typeof command === 'function') {
-        command($selection);
-      } else {
-        document.execCommand(command);
-      }
-    }
   }
 }

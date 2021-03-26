@@ -1,5 +1,5 @@
 import { ChangeEvent, HTMLAttributes } from 'react';
-import { useEditorState } from '../editor/EditorContext';
+import { EditorState, useEditorState } from '../editor/EditorContext';
 
 export const BtnStyles = createDropdown('Styles', [
   ['Normal', 'formatBlock', 'DIV'],
@@ -8,17 +8,13 @@ export const BtnStyles = createDropdown('Styles', [
   ['𝙲𝚘𝚍𝚎', 'formatBlock', 'PRE'],
 ]);
 
-function createDropdown(
-  title: string,
-  items: IDropDownItem[],
-): typeof Dropdown {
+function createDropdown(title: string, items: DropDownItem[]): typeof Dropdown {
   DropdownFactory.displayName = title;
 
   return DropdownFactory;
 
-  function DropdownFactory(props: IDropdownProps) {
-    const { $selection } = useEditorState();
-
+  function DropdownFactory(props: DropdownProps) {
+    const editorState = useEditorState();
     return (
       <Dropdown {...props} onChange={onChange} title={title} items={items} />
     );
@@ -31,7 +27,7 @@ function createDropdown(
       e.target.selectedIndex = 0;
 
       if (typeof command === 'function') {
-        command($selection);
+        command(editorState);
       } else {
         document.execCommand(command, false, commandArgument);
       }
@@ -39,7 +35,7 @@ function createDropdown(
   }
 }
 
-export function Dropdown({ items, selected, ...inputProps }: IDropdownProps) {
+export function Dropdown({ items, selected, ...inputProps }: DropdownProps) {
   return (
     <select {...inputProps} value={selected} className="rsw-dd">
       <option hidden>{inputProps.title}</option>
@@ -52,9 +48,13 @@ export function Dropdown({ items, selected, ...inputProps }: IDropdownProps) {
   );
 }
 
-type IDropDownItem = any[];
+export type DropDownItem = [
+  string,
+  string | ((editorState: EditorState) => void),
+  string,
+];
 
-export interface IDropdownProps extends HTMLAttributes<HTMLSelectElement> {
+export interface DropdownProps extends HTMLAttributes<HTMLSelectElement> {
   selected?: number;
-  items?: IDropDownItem;
+  items?: DropDownItem[];
 }
