@@ -1,112 +1,52 @@
 import '../styles.css';
 
-import {
-  ComponentType,
-  createContext,
-  PureComponent,
-  SyntheticEvent,
-} from 'react';
+import * as React from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { getSelectedNode } from '../utils';
-import { ContentEditable, ICEProps } from './ContentEditable';
+import { ContentEditable, ContentEditableProps } from './ContentEditable';
+import { useEditorState } from './EditorContext';
 
-export const EditorContext = createContext<IEditorContext>({});
+export function Editor({ children, onSelect, ...rest }: EditorProps) {
+  const editorState = useEditorState();
 
-export class Editor extends PureComponent<IEditorProps, IState> {
-  constructor(props: IEditorProps) {
-    super(props);
+  useEffect(() => {
+    document.addEventListener('click', onClickOutside);
+    return () => document.removeEventListener('click', onClickOutside);
+  });
 
-    this.state = {};
-
-    this.onClickOutside = this.onClickOutside.bind(this);
-    this.onTextSelect = this.onTextSelect.bind(this);
-    this.setContentEditableRef = this.setContentEditableRef.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.onClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.onClickOutside);
-  }
-
-  onClickOutside(event: MouseEvent) {
-    const { contentEditable } = this.state;
-
-    if (event.target === contentEditable) {
+  function onClickOutside(event: MouseEvent) {
+    if (event.target === editorState.$el) {
       return;
     }
 
-    if (contentEditable && contentEditable.contains(event.target as any)) {
+    if (editorState.$el?.contains(event.target as HTMLElement)) {
       return;
     }
 
-    this.setState({ selection: null });
+    editorState.update({ $selection: null });
   }
 
-  onTextSelect(e: SyntheticEvent<HTMLElement>) {
-    this.props.onSelect && this.props.onSelect(e);
-    this.setState({ selection: getSelectedNode() });
+  function onTextSelect(event: SyntheticEvent<HTMLElement>) {
+    onSelect?.(event);
+    editorState.update({ $selection: getSelectedNode() });
   }
 
-  setContentEditableRef(el: HTMLElement) {
-    this.setState({ contentEditable: el });
-    this.props.contentEditableRef && this.props.contentEditableRef(el);
+  function setContentEditableRef($el: HTMLElement) {
+    editorState.update({ $el });
   }
 
-  render() {
-    const { children, ...props } = this.props;
-    const { contentEditable, selection } = this.state;
-
-    const context: IEditorContext = {
-      el: contentEditable,
-      selection,
-    };
-
-    return (
-      <div className="rsw-editor">
-        <EditorContext.Provider value={context}>
-          {children}
-          <ContentEditable
-            {...props}
-            contentEditableRef={this.setContentEditableRef}
-            onSelect={this.onTextSelect}
-            className="rsw-ce"
-          />
-        </EditorContext.Provider>
-      </div>
-    );
-  }
-}
-
-export function withEditorContext<T extends ComponentType<any>>(
-  Component: T,
-): T {
-  const childName = Component.displayName || Component.name;
-  WithEditorContext.displayName = `withEditorContext(${childName})`;
-
-  return WithEditorContext as any;
-
-  function WithEditorContext(props) {
-    return (
-      <EditorContext.Consumer>
-        {(context: IEditorContext) => (
-          <Component {...props} el={context.el} selection={context.selection} />
-        )}
-      </EditorContext.Consumer>
-    );
-  }
+  return (
+    <div className="rsw-editor">
+      {children}
+      <ContentEditable
+        {...rest}
+        ref={setContentEditableRef}
+        onSelect={onTextSelect}
+        className="rsw-ce"
+      />
+    </div>
+  );
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IEditorProps extends ICEProps {}
-
-export interface IEditorContext {
-  el?: HTMLElement;
-  selection?: Node;
-}
-
-interface IState {
-  contentEditable?: HTMLElement;
-  selection?: Node;
-}
+export interface EditorProps extends ContentEditableProps {}

@@ -15,13 +15,15 @@ export default [
         format: 'umd',
         sourcemap: true,
         name: 'ReactSimpleWysiwyg',
+        globals: { 'react': 'React' },
       },
       {
         file: packageJson.unpkg,
         format: 'umd',
         sourcemap: true,
         name: 'ReactSimpleWysiwyg',
-        plugins: [terser({ output: { comments: false } })]
+        plugins: [terser({ output: { comments: false } })],
+        globals: { 'react': 'React' },
       },
     ],
     plugins: [
@@ -33,7 +35,7 @@ export default [
           },
         }
       }),
-      styles(),
+      styles({ minimize: true }),
       fileSize(),
     ],
     watch: {
