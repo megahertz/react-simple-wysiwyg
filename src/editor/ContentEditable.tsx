@@ -1,92 +1,104 @@
-import { Component, createElement, FormEvent, HTMLAttributes } from 'react';
-import { compare, normalizeHtml, replaceCaret } from '../utils';
+/* eslint-disable react/prop-types */
+
+import {
+  createElement,
+  ForwardedRef,
+  forwardRef,
+  HTMLAttributes,
+  memo,
+  SyntheticEvent,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
+import { normalizeHtml, replaceCaret } from '../utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for an html element with editable contents.
  */
-export class ContentEditable extends Component<ContentEditableProps> {
-  el: HTMLElement;
-  previousValue: string;
+export const ContentEditable = memo(
+  forwardRef(function ContentEditable(
+    {
+      className,
+      disabled,
+      onBlur,
+      onKeyDown,
+      onKeyUp,
+      tagName,
+      value,
+      ...rest
+    }: ContentEditableProps,
+    ref: ForwardedRef<HTMLElement>,
+  ) {
+    const elRef = useRef<HTMLElement>();
+    const htmlRef = useRef(value);
 
-  constructor(props: ContentEditableProps) {
-    super(props);
-
-    this.previousValue = props.value;
-
-    this.onChange = this.onChange.bind(this);
-    this.setElementRef = this.setElementRef.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps: ContentEditableProps): boolean {
-    if (!this.el) {
-      return true;
-    }
-
-    if (normalizeHtml(nextProps.value) !== normalizeHtml(this.el.innerHTML)) {
-      return true;
-    }
-
-    return !compare(this.props, nextProps, [
-      'disabled',
-      'tagName',
-      'className',
-    ]);
-  }
-
-  componentDidUpdate() {
-    if (!this.el) {
-      return;
-    }
-
-    if (this.props.value !== this.el.innerHTML) {
-      this.previousValue = this.props.value;
-      this.el.innerHTML = this.props.value;
-    }
-
-    replaceCaret(this.el);
-  }
-
-  onChange(event: FormEvent<HTMLElement>) {
-    if (!this.el) {
-      return;
-    }
-
-    const value = this.el.innerHTML;
-    const previous = this.previousValue;
-    this.previousValue = value;
-
-    if (this.props.onChange && value !== previous) {
-      this.props.onChange({ ...event, target: { value } as any });
-    }
-  }
-
-  setElementRef(el) {
-    const { contentEditableRef } = this.props;
-    this.el = el;
-
-    contentEditableRef && contentEditableRef(el);
-  }
-
-  render() {
-    const { contentEditableRef, tagName, value, ...props } = this.props;
-
-    return createElement(tagName || 'div', {
-      ...props,
-      contentEditable: !this.props.disabled,
-      dangerouslySetInnerHTML: { __html: value },
-      onBlur: this.props.onBlur || this.onChange,
-      onInput: this.onChange,
-      onKeyDown: this.props.onKeyDown || this.onChange,
-      onKeyUp: this.props.onKeyUp || this.onChange,
-      ref: this.setElementRef,
+    useEffect(() => {
+      const el = elRef.current;
+      if (el && normalizeHtml(htmlRef.current) !== normalizeHtml(value)) {
+        htmlRef.current = value;
+        el.innerHTML = value;
+        replaceCaret(el);
+      }
     });
-  }
-}
+
+    return useMemo(() => {
+      function onSetRef($el: HTMLElement) {
+        elRef.current = $el;
+        if (typeof ref === 'function') {
+          ref($el);
+        } else if (typeof ref === 'object') {
+          // eslint-disable-next-line no-param-reassign
+          ref.current = $el;
+        }
+      }
+
+      function onChange(event: SyntheticEvent<any>) {
+        const el = elRef.current;
+        if (!el) {
+          return;
+        }
+
+        const elementHtml = el.innerHTML;
+        if (elementHtml !== htmlRef.current) {
+          rest.onChange?.({
+            ...event,
+            target: {
+              value: elementHtml,
+              name: rest.name,
+            } as any,
+          });
+        }
+
+        htmlRef.current = elementHtml;
+      }
+
+      return createElement(tagName || 'div', {
+        ...rest,
+        className,
+        contentEditable: !disabled,
+        dangerouslySetInnerHTML: { __html: value },
+        onBlur: onBlur || onChange,
+        onInput: onChange,
+        onKeyDown: onKeyDown || onChange,
+        onKeyUp: onKeyUp || onChange,
+        ref: onSetRef,
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [className, disabled, onBlur, onKeyDown, onKeyUp, tagName]);
+  }),
+);
+
+export type ContentEditableEvent = SyntheticEvent<any, Event> & {
+  target: { name?: string; value: string };
+};
 
 export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean;
   contentEditableRef?: (el: HTMLElement) => void;
+  name?: string;
+  onChange?: (event: ContentEditableEvent) => void;
   tagName?: string;
   value?: string;
 }

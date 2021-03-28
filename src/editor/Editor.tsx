@@ -39,7 +39,7 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
       {children}
       <ContentEditable
         {...rest}
-        contentEditableRef={setContentEditableRef}
+        ref={setContentEditableRef}
         onSelect={onTextSelect}
         className="rsw-ce"
       />
