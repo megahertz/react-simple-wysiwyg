@@ -1,24 +1,3 @@
-/* eslint-disable no-continue,no-restricted-syntax,no-plusplus */
-export function compare<T>(a: T, b: T, keys: Array<keyof T>): boolean {
-  return keys.every((key) => a[key] === b[key]);
-}
-
-function findLastTextNode(node: Node): Node | null {
-  if (node.nodeType === Node.TEXT_NODE) {
-    return node;
-  }
-
-  const children = node.childNodes;
-  for (let i = children.length - 1; i >= 0; i--) {
-    const textNode = findLastTextNode(children[i]);
-
-    if (textNode !== null) {
-      return textNode;
-    }
-  }
-  return null;
-}
-
 export function getSelectedNode(): Node {
   if ((document as any).selection) {
     return (document as any).selection.createRange().parentElement();
@@ -38,20 +17,20 @@ export function normalizeHtml(str: string): string {
 
 export function replaceCaret(el: HTMLElement) {
   // Place the caret at the end of the element
-  const target = findLastTextNode(el);
+  const target = document.createTextNode('');
+  el.appendChild(target);
+
   // do not move caret if element was not focused
   const isTargetFocused = document.activeElement === el;
-
   if (target !== null && target.nodeValue !== null && isTargetFocused) {
-    const range = document.createRange();
     const sel = window.getSelection();
-    range.setStart(target, target.nodeValue.length);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
-
-    if (el instanceof HTMLElement) {
-      el.focus();
+    if (sel !== null) {
+      const range = document.createRange();
+      range.setStart(target, target.nodeValue.length);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
     }
+    if (el instanceof HTMLElement) el.focus();
   }
 }
