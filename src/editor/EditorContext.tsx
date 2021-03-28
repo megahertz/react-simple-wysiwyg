@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 export const EditorContext = createContext<EditorState>(null);

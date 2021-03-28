@@ -67,7 +67,7 @@
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
-      "eslint --fix --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]' --ignore-pattern examples"
+      "eslint --fix --plugin tsc --rule 'tsc/config: [2, {configFile: \"./tsconfig.json\"}]' --ignore-pattern examples --ignore-pattern rollup.config.js"
     ],
     "*.+(json|css)": [
       "prettier --write"

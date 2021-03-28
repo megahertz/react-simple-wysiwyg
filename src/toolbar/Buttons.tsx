@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { HTMLAttributes, ReactNode } from 'react';
 import { EditorState, useEditorState } from '../editor/EditorContext';
 import OrderedListIcon from './icons/OrderedListIcon';

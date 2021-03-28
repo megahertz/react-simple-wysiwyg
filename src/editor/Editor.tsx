@@ -1,5 +1,6 @@
 import '../styles.css';
 
+import * as React from 'react';
 import { SyntheticEvent, useEffect } from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
