@@ -9,8 +9,9 @@ import {
   BtnRedo,
   BtnUnderline,
   BtnUndo,
-} from '../toolbar/Buttons';
-import { BtnStyles } from '../toolbar/Dropdown';
+} from '../toolbar/buttons';
+import { BtnStyles } from '../toolbar/dropdowns';
+import { HtmlButton } from '../toolbar/HtmlButton';
 import { Editor, EditorProps } from './Editor';
 import { Separator } from '../toolbar/Separator';
 import { Toolbar } from '../toolbar/Toolbar';
@@ -33,6 +34,7 @@ export function DefaultEditor(props: EditorProps) {
           <Separator />
           <BtnLink />
           <BtnClearFormatting />
+          <HtmlButton />
           <Separator />
           <BtnStyles />
         </Toolbar>

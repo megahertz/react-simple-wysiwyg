@@ -16,6 +16,11 @@ function createDropdown(title: string, items: DropDownItem[]): typeof Dropdown {
 
   function DropdownFactory(props: DropdownProps) {
     const editorState = useEditorState();
+
+    if (editorState.htmlMode) {
+      return null;
+    }
+
     return (
       <Dropdown {...props} onChange={onChange} title={title} items={items} />
     );

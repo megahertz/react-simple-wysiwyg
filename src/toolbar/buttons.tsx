@@ -71,6 +71,10 @@ function createButton(
       }
     }
 
+    if (editorState.htmlMode) {
+      return null;
+    }
+
     return (
       <button
         type="button"

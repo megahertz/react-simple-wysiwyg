@@ -1,10 +1,10 @@
-import '../styles.css';
-
 import * as React from 'react';
 import { SyntheticEvent, useEffect } from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
+import { HtmlEditor } from './HtmlEditor';
+import '../styles.css';
 
 export function Editor({ children, onSelect, ...rest }: EditorProps) {
   const editorState = useEditorState();
@@ -33,6 +33,15 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
 
   function setContentEditableRef($el: HTMLElement) {
     editorState.update({ $el });
+  }
+
+  if (editorState.htmlMode) {
+    return (
+      <div className="rsw-editor">
+        {children}
+        <HtmlEditor {...rest} className="rsw-ce rsw-html" />
+      </div>
+    );
   }
 
   return (

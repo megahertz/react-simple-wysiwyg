@@ -13,11 +13,17 @@
   padding: 0.5rem;
 }
 
+.rsw-html {
+  background: transparent;
+  border: none;
+  font-family: monospace, 'Courier New';
+}
+
 .rsw-separator {
   align-self: stretch;
   border-right: 1px solid #ddd;
   display: flex;
-  margin: 0 0.5rem;
+  margin: 0 3px;
 }
 
 .rsw-dd {
