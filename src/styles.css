@@ -13,6 +13,11 @@
   padding: 0.5rem;
 }
 
+.rsw-ce[contentEditable='true']:empty:not(:focus):before {
+  content: attr(placeholder);
+  color: grey;
+}
+
 .rsw-html {
   background: transparent;
   border: none;
