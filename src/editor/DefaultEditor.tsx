@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Editor, EditorProps } from './Editor';
+import { EditorProvider } from './EditorContext';
 import {
   BtnBold,
   BtnBulletList,
@@ -7,15 +9,13 @@ import {
   BtnLink,
   BtnNumberedList,
   BtnRedo,
+  BtnStyles,
   BtnUnderline,
   BtnUndo,
-} from '../toolbar/buttons';
-import { BtnStyles } from '../toolbar/dropdowns';
-import { HtmlButton } from '../toolbar/HtmlButton';
-import { Editor, EditorProps } from './Editor';
-import { Separator } from '../toolbar/Separator';
-import { Toolbar } from '../toolbar/Toolbar';
-import { EditorProvider } from './EditorContext';
+  HtmlButton,
+  Separator,
+  Toolbar,
+} from '../toolbar';
 
 export function DefaultEditor(props: EditorProps) {
   return (
