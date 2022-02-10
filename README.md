@@ -11,7 +11,7 @@ Simple and lightweight React WYSIWYG editor. [Demo](https://megahertz.github.io/
 
 It can be helpful if you only need basic text operations. It's:
 
- - pretty small (~11kb, ~4kb gzipped)
+ - pretty small (~9kb, ~3.5kb gzipped)
  - fast
  - simple to configure
  - simple to extend
