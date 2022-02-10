@@ -17,10 +17,11 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
 
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'prettier', 'react'],
 
   settings: {
     'import/core-modules': ['react', 'react-dom'],
+    'react': { version: 'detect' },
   },
 
   rules: {
