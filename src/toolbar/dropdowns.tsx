@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent, HTMLAttributes } from 'react';
-import { EditorState, useEditorState } from '../editor/EditorContext';
+import { EditorState, useEditorState } from '../editor/EditorContext.js';
 
 export const BtnStyles = createDropdown('Styles', [
   ['Normal', 'formatBlock', 'DIV'],

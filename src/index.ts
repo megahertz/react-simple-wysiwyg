@@ -1,2 +1,2 @@
-export * from './editor';
-export * from './toolbar';
+export * from './editor/index.js';
+export * from './toolbar/index.js';

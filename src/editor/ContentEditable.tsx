@@ -11,7 +11,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
-import { normalizeHtml, replaceCaret } from '../utils';
+import { normalizeHtml, replaceCaret } from '../utils.js';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
