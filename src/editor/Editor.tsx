@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SyntheticEvent, useEffect } from 'react';
-import { getSelectedNode } from '../utils.js';
-import { ContentEditable, ContentEditableProps } from './ContentEditable.js';
-import { useEditorState } from './EditorContext.js';
-import { HtmlEditor } from './HtmlEditor.js';
+import { getSelectedNode } from '../utils';
+import { ContentEditable, ContentEditableProps } from './ContentEditable';
+import { useEditorState } from './EditorContext';
+import { HtmlEditor } from './HtmlEditor';
 import '../styles.css';
 
 export function Editor({ children, onSelect, ...rest }: EditorProps) {

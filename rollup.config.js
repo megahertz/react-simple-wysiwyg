@@ -11,6 +11,12 @@ export default [
     external: [...Object.keys(packageJson.devDependencies)],
     output: [
       {
+        file: packageJson.module,
+        format: 'es',
+        sourcemap: true,
+        globals: { 'react': 'React' },
+      },
+      {
         file: packageJson.main,
         format: 'umd',
         sourcemap: true,
@@ -31,9 +37,9 @@ export default [
         tsconfigOverride: {
           compilerOptions: {
             target: 'ES5',
-            declaration: false,
           },
-        }
+        },
+        useTsconfigDeclarationDir: true,
       }),
       styles({ minimize: true }),
       fileSize(),

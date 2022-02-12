@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Editor, EditorProps } from './Editor.js';
-import { EditorProvider } from './EditorContext.js';
+import { Editor, EditorProps } from './Editor';
+import { EditorProvider } from './EditorContext';
 import {
   BtnBold,
   BtnBulletList,
@@ -15,7 +15,7 @@ import {
   HtmlButton,
   Separator,
   Toolbar,
-} from '../toolbar/index.js';
+} from '../toolbar';
 
 export function DefaultEditor(props: EditorProps) {
   return (

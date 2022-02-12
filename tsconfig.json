@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "declarationDir": "./lib",
     "jsx": "react",
     "lib": ["es6", "dom"],
     "moduleResolution": "node",

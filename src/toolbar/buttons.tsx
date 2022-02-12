@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { HTMLAttributes, ReactNode } from 'react';
-import { EditorState, useEditorState } from '../editor/EditorContext.js';
-import OrderedListIcon from './icons/OrderedListIcon.js';
-import UnorderedListIcon from './icons/UnorderedListIcon.js';
+import { EditorState, useEditorState } from '../editor/EditorContext';
+import OrderedListIcon from './icons/OrderedListIcon';
+import UnorderedListIcon from './icons/UnorderedListIcon';
 
 export const BtnBold = createButton('Bold', '𝐁', 'bold');
 

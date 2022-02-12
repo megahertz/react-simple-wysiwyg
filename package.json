@@ -3,20 +3,13 @@
   "version": "2.0.1",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/umd/index.js",
-  "exports": {
-    ".": {
-      "import": "./lib/index.js",
-      "require": "./lib/umd/index.js"
-    },
-    "./editor/*": "./lib/editor/*.js",
-    "./toolbar/*": "./lib/toolbar/*.js"
-  },
+  "module": "lib/index.js",
   "unpkg": "lib/umd/index.min.js",
-  "type": "module",
   "typings": "lib/index.d.ts",
+  "type": "module",
   "scripts": {
     "start": "npm start --prefix examples/typescript",
-    "build": "rm -rf lib && tsc && rollup -c",
+    "build": "rm -rf lib && rollup -c",
     "pages": "gh-pages -d examples/github.io",
     "lint": "eslint src examples",
     "postversion": "git push && git push --tags",
