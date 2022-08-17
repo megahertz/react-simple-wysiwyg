@@ -1,7 +1,7 @@
 import fileSize from 'rollup-plugin-filesize';
 import styles from 'rollup-plugin-styles';
 import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from 'rollup-plugin-ts';
 
 import packageJson from './package.json';
 
@@ -14,32 +14,29 @@ export default [
         file: packageJson.module,
         format: 'es',
         sourcemap: true,
-        globals: { 'react': 'React' },
       },
       {
         file: packageJson.main,
-        format: 'umd',
+        format: 'cjs',
         sourcemap: true,
-        name: 'ReactSimpleWysiwyg',
-        globals: { 'react': 'React' },
       },
       {
         file: packageJson.unpkg,
         format: 'umd',
-        sourcemap: true,
         name: 'ReactSimpleWysiwyg',
         plugins: [terser({ output: { comments: false } })],
         globals: { 'react': 'React' },
+        sourcemap: true,
       },
     ],
     plugins: [
       typescript({
-        tsconfigOverride: {
-          compilerOptions: {
-            target: 'ES5',
-          },
-        },
-        useTsconfigDeclarationDir: true,
+        browserslist: false,
+        hook: {
+          outputPath: (filePath, kind) => {
+            return kind === 'declaration' ? packageJson.typings : filePath;
+          }
+        }
       }),
       styles({ minimize: true }),
       fileSize(),
