@@ -1,5 +1,3 @@
-/* eslint-disable strict,@typescript-eslint/no-var-requires,quote-props */
-
 'use strict';
 
 const path = require('path');
@@ -13,12 +11,10 @@ module.exports = {
     publicPath: '/dist/',
   },
   devServer: {
-    host: '0.0.0.0',
     hot: true,
-    lazy: false,
-    filename: 'bundle.js',
-    public: 'http://localhost:8080',
-    publicPath: '/dist/',
+    static: {
+      directory: __dirname,
+    },
   },
   devtool: 'source-map',
   module: {
@@ -29,7 +25,12 @@ module.exports = {
       },
       {
         test: /.tsx?$/,
-        loader: 'awesome-typescript-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
       },
     ],
   },
