@@ -3,10 +3,9 @@
   "version": "2.1.0",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
+  "module": "lib/index.es.mjs",
   "unpkg": "lib/index.umd.min.js",
   "typings": "lib/index.d.ts",
-  "type": "module",
   "scripts": {
     "start": "npm start --prefix examples/typescript",
     "build": "rm -rf lib && rollup -c",
