@@ -15,26 +15,19 @@ import { normalizeHtml, replaceCaret } from '../utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
- * A simple component for an html element with editable contents.
+ * A simple component for a html element with editable contents.
  */
 export const ContentEditable = memo(
   forwardRef(function ContentEditable(
-    {
-      className,
-      disabled,
-      onBlur,
-      onKeyDown,
-      onKeyUp,
-      tagName,
-      value,
-      ...rest
-    }: ContentEditableProps,
+    { className, disabled, tagName, value, ...rest }: ContentEditableProps,
     ref: ForwardedRef<HTMLElement>,
   ) {
     const elRef = useRef<HTMLElement>();
     const htmlRef = useRef(value);
+    const restRef = useRef(rest);
 
     useEffect(() => {
+      restRef.current = rest;
       const el = elRef.current;
       if (el && normalizeHtml(htmlRef.current) !== normalizeHtml(value)) {
         htmlRef.current = value;
@@ -62,7 +55,7 @@ export const ContentEditable = memo(
 
         const elementHtml = el.innerHTML;
         if (elementHtml !== htmlRef.current) {
-          rest.onChange?.({
+          restRef.current.onChange?.({
             ...event,
             target: {
               value: elementHtml,
@@ -79,14 +72,14 @@ export const ContentEditable = memo(
         className,
         contentEditable: !disabled,
         dangerouslySetInnerHTML: { __html: value },
-        onBlur: onBlur || onChange,
+        onBlur: (e) => (restRef.current.onBlur || onChange)(e),
         onInput: onChange,
-        onKeyDown: onKeyDown || onChange,
-        onKeyUp: onKeyUp || onChange,
+        onKeyDown: (e) => (restRef.current.onKeyDown || onChange)(e),
+        onKeyUp: (e) => (restRef.current.onKeyUp || onChange)(e),
         ref: onSetRef,
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [className, disabled, onBlur, onKeyDown, onKeyUp, tagName]);
+    }, [className, disabled, tagName]);
   }),
 );
 
