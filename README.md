@@ -61,6 +61,31 @@ If you need more powerful solution for React, you'd better take a look at:
       );
     }
     ```
+    
+### Custom toolbar
+
+```tsx
+export default function Custom() {
+  const [value, setValue] = React.useState('simple text');
+
+  function onChange(e) {
+    setValue(e.target.value);
+  }
+
+  return (
+    <EditorProvider>
+      <Editor value={value} onChange={onChange}>
+        <Toolbar>
+          <BtnBold />
+          <BtnItalic />
+        </Toolbar>
+      </Editor>
+    </EditorProvider>
+  );
+}
+```
+
+Check [DefaultEditor.tsx](src/editor/DefaultEditor.tsx) for details.
   
 ## Credits
 

@@ -25,7 +25,12 @@ export function EditorProvider({ children }: { children: ReactNode }) {
 }
 
 export function useEditorState(): EditorState {
-  return useContext(EditorContext);
+  const context = useContext(EditorContext);
+  if (!context) {
+    throw new Error('You should wrap your component by EditorProvider');
+  }
+
+  return context;
 }
 
 export interface EditorState {
