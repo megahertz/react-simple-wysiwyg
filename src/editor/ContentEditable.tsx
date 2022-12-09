@@ -1,32 +1,22 @@
 /* eslint-disable react/prop-types */
 
-import {
-  createElement,
-  ForwardedRef,
-  forwardRef,
-  HTMLAttributes,
-  memo,
-  SyntheticEvent,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import * as React from 'react';
 import { normalizeHtml, replaceCaret } from '../utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for a html element with editable contents.
  */
-export const ContentEditable = memo(
-  forwardRef(function ContentEditable(
+export const ContentEditable = React.memo(
+  React.forwardRef(function ContentEditable(
     { className, disabled, tagName, value, ...rest }: ContentEditableProps,
-    ref: ForwardedRef<HTMLElement>,
+    ref: React.ForwardedRef<HTMLElement>,
   ) {
-    const elRef = useRef<HTMLElement>();
-    const htmlRef = useRef(value);
-    const restRef = useRef(rest);
+    const elRef = React.useRef<HTMLElement>();
+    const htmlRef = React.useRef(value);
+    const restRef = React.useRef(rest);
 
-    useEffect(() => {
+    React.useEffect(() => {
       restRef.current = rest;
       const el = elRef.current;
       if (el && normalizeHtml(htmlRef.current) !== normalizeHtml(value)) {
@@ -36,7 +26,7 @@ export const ContentEditable = memo(
       }
     });
 
-    return useMemo(() => {
+    return React.useMemo(() => {
       function onSetRef($el: HTMLElement) {
         elRef.current = $el;
         if (typeof ref === 'function') {
@@ -47,7 +37,7 @@ export const ContentEditable = memo(
         }
       }
 
-      function onChange(event: SyntheticEvent<any>) {
+      function onChange(event: React.SyntheticEvent<any>) {
         const el = elRef.current;
         if (!el) {
           return;
@@ -67,7 +57,7 @@ export const ContentEditable = memo(
         htmlRef.current = elementHtml;
       }
 
-      return createElement(tagName || 'div', {
+      return React.createElement(tagName || 'div', {
         ...rest,
         className,
         contentEditable: !disabled,
@@ -83,11 +73,12 @@ export const ContentEditable = memo(
   }),
 );
 
-export type ContentEditableEvent = SyntheticEvent<any, Event> & {
+export type ContentEditableEvent = React.SyntheticEvent<any, Event> & {
   target: { name?: string; value: string };
 };
 
-export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
+export interface ContentEditableProps
+  extends React.HTMLAttributes<HTMLElement> {
   disabled?: boolean;
   contentEditableRef?: (el: HTMLElement) => void;
   name?: string;

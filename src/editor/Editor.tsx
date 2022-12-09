@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { SyntheticEvent, useEffect } from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
@@ -9,7 +8,7 @@ import '../styles.css';
 export function Editor({ children, onSelect, ...rest }: EditorProps) {
   const editorState = useEditorState();
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.addEventListener('click', onClickOutside);
     return () => document.removeEventListener('click', onClickOutside);
   });
@@ -26,7 +25,7 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
     editorState.update({ $selection: null });
   }
 
-  function onTextSelect(event: SyntheticEvent<HTMLElement>) {
+  function onTextSelect(event: React.SyntheticEvent<HTMLElement>) {
     onSelect?.(event);
     editorState.update({ $selection: getSelectedNode() });
   }

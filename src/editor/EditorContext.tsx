@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { createContext, ReactNode, useContext, useState } from 'react';
 
-export const EditorContext = createContext<EditorState>(null);
+export const EditorContext = React.createContext<EditorState>(null);
 
-export function EditorProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<EditorState>({
+export function EditorProvider({ children }: { children: React.ReactNode }) {
+  const [state, setState] = React.useState<EditorState>({
     htmlMode: false,
     update,
   });
@@ -25,7 +24,7 @@ export function EditorProvider({ children }: { children: ReactNode }) {
 }
 
 export function useEditorState(): EditorState {
-  const context = useContext(EditorContext);
+  const context = React.useContext(EditorContext);
   if (!context) {
     throw new Error('You should wrap your component by EditorProvider');
   }
