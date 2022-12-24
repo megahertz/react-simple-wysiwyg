@@ -63,7 +63,8 @@ function createButton(
       active = !!$selection && document.queryCommandState(command);
     }
 
-    function onAction() {
+    function onAction(e: React.MouseEvent<HTMLButtonElement>) {
+      e.preventDefault();
       if (typeof command === 'function') {
         command(editorState);
       } else {
