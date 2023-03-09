@@ -9,6 +9,7 @@ import {
   BtnLink,
   BtnNumberedList,
   BtnRedo,
+  BtnStrikeThrough,
   BtnStyles,
   BtnUnderline,
   BtnUndo,
@@ -28,6 +29,7 @@ export function DefaultEditor(props: EditorProps) {
           <BtnBold />
           <BtnItalic />
           <BtnUnderline />
+          <BtnStrikeThrough />
           <Separator />
           <BtnNumberedList />
           <BtnBulletList />
