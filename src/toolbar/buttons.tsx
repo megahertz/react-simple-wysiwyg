@@ -19,9 +19,10 @@ export const BtnClearFormatting = createButton(
 );
 
 export const BtnItalic = createButton('Italic', '𝑰', 'italic');
+
 export const BtnStrikeThrough = createButton(
   'Strike through',
-  'ᵺ',
+  <s>ab</s>,
   'strikeThrough',
 );
 
