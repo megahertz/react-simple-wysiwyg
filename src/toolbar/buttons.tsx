@@ -20,6 +20,12 @@ export const BtnClearFormatting = createButton(
 
 export const BtnItalic = createButton('Italic', '𝑰', 'italic');
 
+export const BtnStrikeThrough = createButton(
+  'Strike through',
+  <s>ab</s>,
+  'strikeThrough',
+);
+
 export const BtnLink = createButton('Link', '🔗', ({ $selection }) => {
   if ($selection?.nodeName === 'A') {
     document.execCommand('unlink');
