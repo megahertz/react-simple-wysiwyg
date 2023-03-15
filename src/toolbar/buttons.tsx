@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { HTMLAttributes, ReactNode } from 'react';
-import { EditorState, useEditorState } from '../editor/EditorContext';
+import { EditorState, useEditorState } from '../editor';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
 
@@ -51,7 +51,7 @@ export const BtnUnderline = createButton(
 
 export const BtnUndo = createButton('Undo', '↶', 'undo');
 
-function createButton(
+export function createButton(
   title: string,
   content: ReactNode,
   command: ((state: EditorState) => void) | string,

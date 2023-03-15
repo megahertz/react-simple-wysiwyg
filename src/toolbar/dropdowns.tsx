@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { ChangeEvent, HTMLAttributes } from 'react';
-import { EditorState, useEditorState } from '../editor/EditorContext';
+import { EditorState, useEditorState } from '../editor';
 
 export const BtnStyles = createDropdown('Styles', [
   ['Normal', 'formatBlock', 'DIV'],
@@ -9,7 +9,10 @@ export const BtnStyles = createDropdown('Styles', [
   ['𝙲𝚘𝚍𝚎', 'formatBlock', 'PRE'],
 ]);
 
-function createDropdown(title: string, items: DropDownItem[]): typeof Dropdown {
+export function createDropdown(
+  title: string,
+  items: DropDownItem[],
+): typeof Dropdown {
   DropdownFactory.displayName = title;
 
   return DropdownFactory;

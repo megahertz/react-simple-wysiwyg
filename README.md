@@ -86,6 +86,38 @@ export default function Custom() {
 ```
 
 Check [DefaultEditor.tsx](src/editor/DefaultEditor.tsx) for details.
+
+### Custom buttons
+
+This library contains only a basic set of buttons, but it can be extended
+easily. Check [buttons.ts](src/toolbar/buttons.tsx) and 
+[dropdowns.ts](src/toolbar/dropdowns.tsx) for example. Most of the buttons use
+[document.execCommand](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand).
+You can find a list of all available commands there. This API is deprecated,
+but there is still no alternative and there are no plans to remove it from
+browsers. Most of the popular WYSIWYG editors continue using it.
+
+```tsx
+const BtnAlignCenter = createButton(
+  'Align center',
+  '≡',
+  'justifyCenter',
+);
+
+export default function CustomEditor({ value, onChange }) {
+  return (
+    <EditorProvider>
+      <Editor value={value} onChange={onChange}>
+        <Toolbar>
+          <BtnBold />
+          <BtnItalic />
+          <BtnAlignCenter />
+        </Toolbar>
+      </Editor>
+    </EditorProvider>
+  );
+}
+```
   
 ## Credits
 
