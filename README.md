@@ -46,18 +46,18 @@ If you need more powerful solution for React, you'd better take a look at:
  2. Use the component
  
     ```jsx
-    import React from 'react';
-    import { DefaultEditor } from 'react-simple-wysiwyg';
+    import { useState } from 'react';
+    import Editor from 'react-simple-wysiwyg';
     
     function App() {
-      const [html, setHtml] = React.useState('my <b>HTML</b>');
+      const [html, setHtml] = useState('my <b>HTML</b>');
       
       function onChange(e) {
         setHtml(e.target.value);
       }
     
       return (
-        <DefaultEditor value={html} onChange={onChange} />
+        <Editor value={html} onChange={onChange} />
       );
     }
     ```
@@ -65,8 +65,17 @@ If you need more powerful solution for React, you'd better take a look at:
 ### Custom toolbar
 
 ```tsx
-export default function Custom() {
-  const [value, setValue] = React.useState('simple text');
+import { useState } from 'react';
+import { 
+  BtnBold,
+  BtnItalic,
+  Editor,
+  EditorProvider,
+  Toolbar
+} from 'react-simple-wysiwyg';
+
+export default function CustomEditor() {
+  const [value, setValue] = useState('simple text');
 
   function onChange(e) {
     setValue(e.target.value);
@@ -98,11 +107,16 @@ but there is still no alternative and there are no plans to remove it from
 browsers. Most of the popular WYSIWYG editors continue using it.
 
 ```tsx
-const BtnAlignCenter = createButton(
-  'Align center',
-  '≡',
-  'justifyCenter',
-);
+import { 
+  BtnBold, 
+  BtnItalic, 
+  createButton, 
+  Editor, 
+  EditorProvider, 
+  Toolbar
+} from 'react-simple-wysiwyg';
+
+const BtnAlignCenter = createButton('Align center', '≡', 'justifyCenter');
 
 export default function CustomEditor({ value, onChange }) {
   return (
@@ -118,6 +132,33 @@ export default function CustomEditor({ value, onChange }) {
   );
 }
 ```
+
+### Editor style and size
+
+By default, it fills the whole width of the parent element, and the height
+depends on a content height. It could be customized easily. The root element
+of the editor has `rsw-editor` css class, so you could use it in your styles.
+
+Also, you can pass `containerProps` to customize editor appearance. Here's an
+example how make the editor resizable:
+
+```tsx
+<Editor 
+  containerProps={{ style: { resize: 'vertical' } }}
+  value={html}
+  onChange={onChange}
+/>
+```
+
+All css classes are consistent, so feel free to use these names in your css:
+
+- `rsw-editor` (root container)
+- `rsw-ce` (editable area)
+- `rsw-toolbar`
+  - `rsw-btn`
+  - `rsw-separator`
+  - `rsw-dd` (drop down list)
+  
   
 ## Credits
 

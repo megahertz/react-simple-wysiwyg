@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react';
 import * as React from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
@@ -5,7 +6,12 @@ import { useEditorState } from './EditorContext';
 import { HtmlEditor } from './HtmlEditor';
 import '../styles.css';
 
-export function Editor({ children, onSelect, ...rest }: EditorProps) {
+export function Editor({
+  children,
+  containerProps,
+  onSelect,
+  ...rest
+}: EditorProps) {
   const editorState = useEditorState();
 
   React.useEffect(() => {
@@ -36,7 +42,7 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
 
   if (editorState.htmlMode) {
     return (
-      <div className="rsw-editor">
+      <div className="rsw-editor" {...containerProps}>
         {children}
         <HtmlEditor {...rest} className="rsw-ce rsw-html" />
       </div>
@@ -44,7 +50,7 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
   }
 
   return (
-    <div className="rsw-editor">
+    <div className="rsw-editor" {...containerProps}>
       {children}
       <ContentEditable
         {...rest}
@@ -57,4 +63,6 @@ export function Editor({ children, onSelect, ...rest }: EditorProps) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface EditorProps extends ContentEditableProps {}
+export interface EditorProps extends ContentEditableProps {
+  containerProps?: ComponentProps<'div'>;
+}
