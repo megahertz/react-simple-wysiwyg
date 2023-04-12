@@ -35,6 +35,10 @@ export function createDropdown(
       e.preventDefault();
       e.target.selectedIndex = 0;
 
+      if (document.activeElement !== editorState.$el) {
+        editorState.$el.focus();
+      }
+
       if (typeof command === 'function') {
         command(editorState);
       } else {

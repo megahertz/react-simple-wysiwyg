@@ -62,7 +62,7 @@ export function createButton(
 
   function ButtonFactory(props: HTMLAttributes<HTMLButtonElement>) {
     const editorState = useEditorState();
-    const { $selection } = editorState;
+    const { $el, $selection } = editorState;
 
     let active = false;
     if (typeof command === 'string') {
@@ -71,6 +71,11 @@ export function createButton(
 
     function onAction(e: React.MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
+
+      if (document.activeElement !== $el) {
+        $el.focus();
+      }
+
       if (typeof command === 'function') {
         command(editorState);
       } else {
