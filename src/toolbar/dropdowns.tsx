@@ -40,8 +40,10 @@ export function createDropdown(
     );
 
     function onChange(e: ChangeEvent<HTMLSelectElement>) {
-      const selected = e.target.value;
-      const selectedIndex = parseInt(e.target.value, 10);
+      const target = e.target;
+      const selectedValue = target.value;
+      const selectedIndex = parseInt(selectedValue, 10);
+
       const [, command, commandArgument] = items[selectedIndex];
 
       e.preventDefault();
@@ -56,7 +58,7 @@ export function createDropdown(
         document.execCommand(command, false, commandArgument);
       }
 
-      setTimeout(() => (e.target.value = selected), 10);
+      setTimeout(() => (target.value = selectedValue), 10);
     }
   }
 }
