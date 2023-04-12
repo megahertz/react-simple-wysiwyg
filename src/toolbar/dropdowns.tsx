@@ -19,24 +19,35 @@ export function createDropdown(
 
   function DropdownFactory(props: DropdownProps) {
     const editorState = useEditorState();
+    const { $el, $selection, htmlMode } = editorState;
 
-    if (editorState.htmlMode) {
+    if (htmlMode) {
       return null;
     }
 
+    const activeIndex = items.findIndex(
+      (item) => item[1] === 'formatBlock' && $selection?.nodeName === item[2],
+    );
+
     return (
-      <Dropdown {...props} onChange={onChange} title={title} items={items} />
+      <Dropdown
+        {...props}
+        onChange={onChange}
+        title={title}
+        items={items}
+        selected={activeIndex}
+      />
     );
 
     function onChange(e: ChangeEvent<HTMLSelectElement>) {
-      const selected = parseInt(e.target.value, 10);
-      const [, command, commandArgument] = items[selected];
+      const selected = e.target.value;
+      const selectedIndex = parseInt(e.target.value, 10);
+      const [, command, commandArgument] = items[selectedIndex];
 
       e.preventDefault();
-      e.target.selectedIndex = 0;
 
-      if (document.activeElement !== editorState.$el) {
-        editorState.$el.focus();
+      if (document.activeElement !== $el) {
+        $el.focus();
       }
 
       if (typeof command === 'function') {
@@ -44,6 +55,8 @@ export function createDropdown(
       } else {
         document.execCommand(command, false, commandArgument);
       }
+
+      setTimeout(() => (e.target.value = selected), 10);
     }
   }
 }
