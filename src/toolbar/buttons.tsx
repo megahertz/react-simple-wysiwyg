@@ -31,7 +31,7 @@ export const BtnLink = createButton('Link', '🔗', ({ $selection }) => {
     document.execCommand('unlink');
   } else {
     // eslint-disable-next-line no-alert
-    document.execCommand('createLink', false, prompt('URL', ''));
+    document.execCommand('createLink', false, prompt('URL', '') || undefined);
   }
 });
 
@@ -73,7 +73,7 @@ export function createButton(
       e.preventDefault();
 
       if (document.activeElement !== $el) {
-        $el.focus();
+        $el?.focus();
       }
 
       if (typeof command === 'function') {

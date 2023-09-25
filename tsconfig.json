@@ -9,6 +9,7 @@
     "outDir": "./lib",
     "skipLibCheck": true,
     "sourceMap": true,
+    "strict": true,
     "target": "ES5"
   },
   "include": ["src/**/*"]

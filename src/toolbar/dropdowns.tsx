@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ChangeEvent, HTMLAttributes } from 'react';
+import type { ChangeEvent, FC, HTMLAttributes } from 'react';
 import { EditorState, useEditorState } from '../editor/EditorContext';
 
 export const BtnStyles = createDropdown('Styles', [
@@ -12,12 +12,12 @@ export const BtnStyles = createDropdown('Styles', [
 export function createDropdown(
   title: string,
   items: DropDownItem[],
-): typeof Dropdown {
+): FC<DropDownFactoryProps> {
   DropdownFactory.displayName = title;
 
   return DropdownFactory;
 
-  function DropdownFactory(props: DropdownProps) {
+  function DropdownFactory(props: DropDownFactoryProps) {
     const editorState = useEditorState();
     const { $el, $selection, htmlMode } = editorState;
 
@@ -49,7 +49,7 @@ export function createDropdown(
       e.preventDefault();
 
       if (document.activeElement !== $el) {
-        $el.focus();
+        $el?.focus();
       }
 
       if (typeof command === 'function') {
@@ -82,7 +82,11 @@ export type DropDownItem = [
   string,
 ];
 
-export interface DropdownProps extends HTMLAttributes<HTMLSelectElement> {
+export interface DropDownFactoryProps
+  extends HTMLAttributes<HTMLSelectElement> {
   selected?: number;
-  items?: DropDownItem[];
+}
+
+export interface DropdownProps extends DropDownFactoryProps {
+  items: DropDownItem[];
 }

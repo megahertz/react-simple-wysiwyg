@@ -28,7 +28,7 @@ export function Editor({
       return;
     }
 
-    editorState.update({ $selection: null });
+    editorState.update({ $selection: undefined });
   }
 
   function onTextSelect(event: SyntheticEvent<HTMLElement>) {

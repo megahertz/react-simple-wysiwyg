@@ -7,7 +7,7 @@
   "unpkg": "lib/index.umd.min.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "npm start --prefix examples/typescript",
+    "start": "npm run build && npm start --prefix examples/typescript",
     "build": "rm -rf lib && rollup -c",
     "pages": "gh-pages -d examples/github.io",
     "lint": "tsc --noEmit && eslint src examples",

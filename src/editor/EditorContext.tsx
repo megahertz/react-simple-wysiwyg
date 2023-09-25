@@ -1,7 +1,7 @@
 import { createContext, type ReactNode, useContext, useState } from 'react';
 import React from 'react';
 
-export const EditorContext = createContext<EditorState>(null);
+export const EditorContext = createContext<EditorState | undefined>(undefined);
 
 export function EditorProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<EditorState>({
@@ -9,7 +9,7 @@ export function EditorProvider({ children }: { children: ReactNode }) {
     update,
   });
 
-  function update(attrs) {
+  function update(attrs: EditorState) {
     setState((prevState) => {
       return {
         ...prevState,

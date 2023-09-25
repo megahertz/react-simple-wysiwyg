@@ -1,12 +1,14 @@
 import {
   createElement,
   forwardRef,
+  type FocusEvent,
   type ForwardedRef,
   type HTMLAttributes,
+  type KeyboardEvent,
   memo,
   type SyntheticEvent,
-  useMemo,
   useEffect,
+  useMemo,
   useRef,
 } from 'react';
 import { normalizeHtml, replaceCaret } from '../utils';
@@ -17,7 +19,7 @@ import { normalizeHtml, replaceCaret } from '../utils';
  */
 export const ContentEditable = memo(
   forwardRef(function ContentEditable(
-    { className, disabled, tagName, value, ...rest }: ContentEditableProps,
+    { className, disabled, tagName, value = '', ...rest }: ContentEditableProps,
     ref: ForwardedRef<HTMLElement>,
   ) {
     const elRef = useRef<HTMLElement>();
@@ -39,7 +41,7 @@ export const ContentEditable = memo(
         elRef.current = $el;
         if (typeof ref === 'function') {
           ref($el);
-        } else if (typeof ref === 'object') {
+        } else if (typeof ref === 'object' && ref) {
           // eslint-disable-next-line no-param-reassign
           ref.current = $el;
         }
@@ -70,10 +72,13 @@ export const ContentEditable = memo(
         className,
         contentEditable: !disabled,
         dangerouslySetInnerHTML: { __html: value },
-        onBlur: (e) => (restRef.current.onBlur || onChange)(e),
+        onBlur: (e: FocusEvent<HTMLElement>) =>
+          (restRef.current.onBlur || onChange)(e),
         onInput: onChange,
-        onKeyDown: (e) => (restRef.current.onKeyDown || onChange)(e),
-        onKeyUp: (e) => (restRef.current.onKeyUp || onChange)(e),
+        onKeyDown: (e: KeyboardEvent<HTMLElement>) =>
+          (restRef.current.onKeyDown || onChange)(e),
+        onKeyUp: (e: KeyboardEvent<HTMLElement>) =>
+          (restRef.current.onKeyUp || onChange)(e),
         ref: onSetRef,
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps

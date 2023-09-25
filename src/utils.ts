@@ -1,18 +1,18 @@
-export function getSelectedNode(): Node {
+export function getSelectedNode(): Node | undefined {
   if ((document as any).selection) {
     return (document as any).selection.createRange().parentElement();
   }
 
   const selection = window.getSelection();
-  if (selection.rangeCount > 0) {
-    return selection.getRangeAt(0).startContainer.parentNode;
+  if (selection && selection.rangeCount > 0) {
+    return selection.getRangeAt(0).startContainer.parentNode || undefined;
   }
 
-  return null;
+  return undefined;
 }
 
-export function normalizeHtml(str: string): string {
-  return str && str.replace(/&nbsp;|\u202F|\u00A0/g, ' ');
+export function normalizeHtml(str: string | undefined): string {
+  return str ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ') : '';
 }
 
 export function replaceCaret(el: HTMLElement) {
