@@ -40,7 +40,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-simple-wysiwyg': path.resolve('../../src'),
+      'react-simple-wysiwyg': path.resolve('../..'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },

@@ -1,9 +1,10 @@
+import styles from '@ironkinoko/rollup-plugin-styles';
+import terser from '@rollup/plugin-terser';
+import replace from '@rollup/plugin-replace';
 import fileSize from 'rollup-plugin-filesize';
-import styles from 'rollup-plugin-styles';
-import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-ts';
 
-import packageJson from './package.json';
+import packageJson from './package.json' assert { type: 'json' };
 
 export default [
   {
@@ -13,20 +14,27 @@ export default [
       {
         file: packageJson.module,
         format: 'es',
+        plugins: [replace({
+          'React.createElement': 'createElement',
+          'import React, { ': 'import { ',
+        })],
         sourcemap: true,
+        exports: 'named',
       },
       {
         file: packageJson.main,
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
       },
       {
         file: packageJson.unpkg,
         format: 'umd',
         name: 'ReactSimpleWysiwyg',
-        plugins: [terser({ output: { comments: false } })],
+        plugins: [terser()],
         globals: { 'react': 'React' },
         sourcemap: true,
+        exports: 'named',
       },
     ],
     plugins: [
@@ -36,7 +44,7 @@ export default [
           outputPath: (filePath, kind) => {
             return kind === 'declaration' ? packageJson.typings : filePath;
           }
-        }
+        },
       }),
       styles({ minimize: true }),
       fileSize(),

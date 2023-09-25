@@ -1,6 +1,6 @@
-import * as React from 'react';
-import type { HTMLAttributes, ReactNode } from 'react';
-import { EditorState, useEditorState } from '../editor';
+import React from 'react';
+import type { HTMLAttributes, MouseEvent, ReactNode } from 'react';
+import { EditorState, useEditorState } from '../editor/EditorContext';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
 
@@ -69,7 +69,7 @@ export function createButton(
       active = !!$selection && document.queryCommandState(command);
     }
 
-    function onAction(e: React.MouseEvent<HTMLButtonElement>) {
+    function onAction(e: MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
 
       if (document.activeElement !== $el) {

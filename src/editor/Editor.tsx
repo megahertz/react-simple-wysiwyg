@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import * as React from 'react';
+import { type ComponentProps, type SyntheticEvent, useEffect } from 'react';
+import React from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
@@ -14,7 +14,7 @@ export function Editor({
 }: EditorProps) {
   const editorState = useEditorState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('click', onClickOutside);
     return () => document.removeEventListener('click', onClickOutside);
   });
@@ -31,7 +31,7 @@ export function Editor({
     editorState.update({ $selection: null });
   }
 
-  function onTextSelect(event: React.SyntheticEvent<HTMLElement>) {
+  function onTextSelect(event: SyntheticEvent<HTMLElement>) {
     onSelect?.(event);
     editorState.update({ $selection: getSelectedNode() });
   }
