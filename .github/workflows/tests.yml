@@ -16,7 +16,7 @@ jobs:
         node-version: 18
 
     - run: npm install
-    - run: npm --prefix e2e/cra
+    - run: npm install --prefix e2e/cra
 
     - run: npm test
 
