@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["es6", "dom"],
+    "moduleResolution": "node",
+    "outDir": "./build",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES5"
+  },
+  "include": ["src/**/*"]
+}

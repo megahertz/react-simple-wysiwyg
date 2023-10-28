@@ -1,15 +1,10 @@
-import {
-  createElement,
-  forwardRef,
-  type FocusEvent,
-  type ForwardedRef,
-  type HTMLAttributes,
-  type KeyboardEvent,
-  memo,
-  type SyntheticEvent,
-  useEffect,
-  useMemo,
-  useRef,
+import React from 'react';
+import type {
+  FocusEvent,
+  ForwardedRef,
+  HTMLAttributes,
+  KeyboardEvent,
+  SyntheticEvent,
 } from 'react';
 import { normalizeHtml, replaceCaret } from '../utils';
 
@@ -17,16 +12,16 @@ import { normalizeHtml, replaceCaret } from '../utils';
  * Based on https://github.com/lovasoa/react-contenteditable
  * A simple component for a html element with editable contents.
  */
-export const ContentEditable = memo(
-  forwardRef(function ContentEditable(
+export const ContentEditable = React.memo(
+  React.forwardRef(function ContentEditable(
     { className, disabled, tagName, value = '', ...rest }: ContentEditableProps,
     ref: ForwardedRef<HTMLElement>,
   ) {
-    const elRef = useRef<HTMLElement>();
-    const htmlRef = useRef(value);
-    const restRef = useRef(rest);
+    const elRef = React.useRef<HTMLElement>();
+    const htmlRef = React.useRef(value);
+    const restRef = React.useRef(rest);
 
-    useEffect(() => {
+    React.useEffect(() => {
       restRef.current = rest;
       const el = elRef.current;
       if (el && normalizeHtml(htmlRef.current) !== normalizeHtml(value)) {
@@ -36,7 +31,7 @@ export const ContentEditable = memo(
       }
     });
 
-    return useMemo(() => {
+    return React.useMemo(() => {
       function onSetRef($el: HTMLElement) {
         elRef.current = $el;
         if (typeof ref === 'function') {
@@ -67,7 +62,7 @@ export const ContentEditable = memo(
         htmlRef.current = elementHtml;
       }
 
-      return createElement(tagName || 'div', {
+      return React.createElement(tagName || 'div', {
         ...rest,
         className,
         contentEditable: !disabled,

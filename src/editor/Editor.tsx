@@ -1,4 +1,4 @@
-import { type ComponentProps, type SyntheticEvent, useEffect } from 'react';
+import type { ComponentProps, SyntheticEvent } from 'react';
 import React from 'react';
 import { getSelectedNode } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
@@ -14,7 +14,7 @@ export function Editor({
 }: EditorProps) {
   const editorState = useEditorState();
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.addEventListener('click', onClickOutside);
     return () => document.removeEventListener('click', onClickOutside);
   });

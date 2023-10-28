@@ -1,0 +1,37 @@
+{
+  "name": "rsw-e2e-cra",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "npx playwright test"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "playwright": "^1.39.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-simple-wysiwyg": "^2.2.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/jest": "^29.5.6",
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5"
+  }
+}
