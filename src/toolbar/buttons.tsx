@@ -79,7 +79,6 @@ export function createButton(
     let active = false;
     if (typeof command === 'string') {
       active = !!$selection && document.queryCommandState(command);
-      console.log(active);
     }
 
     function onAction(e: MouseEvent<HTMLButtonElement>) {
@@ -93,7 +92,6 @@ export function createButton(
         command(editorState);
       } else {
         document.execCommand(command);
-        console.log("command")
       }
     }
 
