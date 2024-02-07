@@ -39,11 +39,6 @@
 }
 
 .rsw-separator {
-  /* align-self: stretch; */
-  /* border-right: 1px solid #ddd;
-  display: flex;
-  margin: 0 3px; */
-  /* width: 90%; */
   width: 1px;
   height: 24px;
   background: #EEEFF3;
