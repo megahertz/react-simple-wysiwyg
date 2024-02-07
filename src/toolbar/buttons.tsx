@@ -11,7 +11,6 @@ import AlignCenter from './icons/AlignCenter';
 import AlignRight from './icons/AlignRight';
 
 export const BtnBold = createButton('Bold', <BoldButton/>, 'bold');
-export const buttonId = document.querySelector('.rsw-btn')
 
 export const BtnBulletList = createButton(
   'Bullet list',
