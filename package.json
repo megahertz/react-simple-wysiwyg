@@ -1,5 +1,5 @@
 {
-  "name": "react-simple-wysiwyg",
+  "name": "mcf-wysiwyg",
   "version": "3.0.2",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/index.cjs.js",
