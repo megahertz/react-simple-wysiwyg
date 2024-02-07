@@ -44,6 +44,7 @@ declare const BtnBold: {
     (props: HTMLAttributes<HTMLButtonElement>): React.JSX.Element | null;
     displayName: string;
 };
+declare const buttonId: Element | null;
 declare const BtnBulletList: {
     (props: HTMLAttributes<HTMLButtonElement>): React.JSX.Element | null;
     displayName: string;
@@ -60,6 +61,7 @@ declare const BtnAlignRight: {
     (props: HTMLAttributes<HTMLButtonElement>): React.JSX.Element | null;
     displayName: string;
 };
+// const toolbar = document.querySelector('.toolbar');
 declare const BtnClearFormatting: {
     (props: HTMLAttributes<HTMLButtonElement>): React.JSX.Element | null;
     displayName: string;
@@ -114,5 +116,6 @@ declare function HtmlButton({ ...rest }: {
     [x: string]: any;
 }): React.JSX.Element;
 declare function Separator(): React.JSX.Element | null;
+declare const tolllll: Element | null;
 declare function Toolbar(props: HTMLAttributes<HTMLDivElement>): React.JSX.Element;
-export { ContentEditable, ContentEditableEvent, ContentEditableProps, DefaultEditor, DefaultEditor as default, Editor, EditorProps, EditorContext, EditorProvider, useEditorState, EditorState, HtmlEditor, BtnBold, BtnBulletList, BtnAligenLeft, BtnAlignCenter, BtnAlignRight, BtnClearFormatting, BtnItalic, BtnStrikeThrough, BtnLink, BtnNumberedList, BtnRedo, BtnUnderline, BtnUndo, createButton, BtnStyles, createDropdown, Dropdown, DropDownItem, DropDownFactoryProps, DropdownProps, HtmlButton, Separator, Toolbar };
+export { ContentEditable, ContentEditableEvent, ContentEditableProps, DefaultEditor, DefaultEditor as default, Editor, EditorProps, EditorContext, EditorProvider, useEditorState, EditorState, HtmlEditor, BtnBold, buttonId, BtnBulletList, BtnAligenLeft, BtnAlignCenter, BtnAlignRight, BtnClearFormatting, BtnItalic, BtnStrikeThrough, BtnLink, BtnNumberedList, BtnRedo, BtnUnderline, BtnUndo, createButton, BtnStyles, createDropdown, Dropdown, DropDownItem, DropDownFactoryProps, DropdownProps, HtmlButton, Separator, tolllll, Toolbar };

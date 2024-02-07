@@ -4,6 +4,7 @@
   flex-direction: column;
   min-height: 100px;
   overflow: hidden;
+  position: relative;
 }
 /* .rsw-editor:focus{
   border:5px solid red;
@@ -14,7 +15,7 @@
   /* padding: 0.5rem; */
   padding-top: 65px;
   padding-right: 8px;
-  padding-left: 24px;
+  padding-left: 28px;
   border-radius: 6px;
   border: 1px solid #EEEFF3;
   position: relative;
@@ -29,7 +30,7 @@
 }
 
 .rsw-html {
-  background: transparent;
+  /* background: transparent; */
   border: none;
   font-family: 'Inter', sans-serif;
 }
@@ -68,6 +69,7 @@
   padding: 0;
   width: 24px;
   border-radius: 6px;
+  z-index: 1;
 }
 
 .rsw-btn:hover {

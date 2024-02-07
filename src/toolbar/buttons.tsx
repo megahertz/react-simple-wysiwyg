@@ -11,6 +11,7 @@ import AlignCenter from './icons/AlignCenter';
 import AlignRight from './icons/AlignRight';
 
 export const BtnBold = createButton('Bold', <BoldButton/>, 'bold');
+export const buttonId = document.querySelector('.rsw-btn')
 
 export const BtnBulletList = createButton(
   'Bullet list',
@@ -20,6 +21,8 @@ export const BtnBulletList = createButton(
 export const BtnAligenLeft = createButton('Aligen left', <AlignLeft/> , 'justifyLeft');
 export const BtnAlignCenter = createButton('Align center', <AlignCenter/>, 'justifyCenter');
 export const BtnAlignRight = createButton('Aligen right', <AlignRight/> ,'justifyRight');
+// const toolbar = document.querySelector('.toolbar');
+
 
 
 export const BtnClearFormatting = createButton(
