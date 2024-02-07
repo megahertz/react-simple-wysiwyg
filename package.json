@@ -18,7 +18,7 @@
     "test:e2e": "npm test --prefix e2e/cra",
     "test:full": "npm run test && npm run test:e2e"
   },
-  "repository": "megahertz/react-simple-wysiwyg",
+  "repository": "Khalisur/react-simple-wysiwyg",
   "files": [
     "lib"
   ],
