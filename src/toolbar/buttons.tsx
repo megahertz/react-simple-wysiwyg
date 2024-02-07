@@ -3,14 +3,24 @@ import type { HTMLAttributes, MouseEvent, ReactNode } from 'react';
 import { EditorState, useEditorState } from '../editor/EditorContext';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
+import BoldButton from './icons/BoldButton';
+import ItalicButton from './icons/ItalicButton';
+import UnderLIneButton from './icons/UnderLIneButton';
+import AlignLeft from './icons/AlignLeft';
+import AlignCenter from './icons/AlignCenter';
+import AlignRight from './icons/AlignRight';
 
-export const BtnBold = createButton('Bold', '𝐁', 'bold');
+export const BtnBold = createButton('Bold', <BoldButton/>, 'bold');
 
 export const BtnBulletList = createButton(
   'Bullet list',
   <UnorderedListIcon />,
   'insertUnorderedList',
 );
+export const BtnAligenLeft = createButton('Aligen left', <AlignLeft/> , 'justifyLeft');
+export const BtnAlignCenter = createButton('Align center', <AlignCenter/>, 'justifyCenter');
+export const BtnAlignRight = createButton('Aligen right', <AlignRight/> ,'justifyRight');
+
 
 export const BtnClearFormatting = createButton(
   'Clear formatting',
@@ -18,7 +28,7 @@ export const BtnClearFormatting = createButton(
   'removeFormat',
 );
 
-export const BtnItalic = createButton('Italic', '𝑰', 'italic');
+export const BtnItalic = createButton('Italic', <ItalicButton/>, 'italic');
 
 export const BtnStrikeThrough = createButton(
   'Strike through',
@@ -45,7 +55,7 @@ export const BtnRedo = createButton('Redo', '↷', 'redo');
 
 export const BtnUnderline = createButton(
   'Underline',
-  <span style={{ textDecoration: 'underline' }}>𝐔</span>,
+  <UnderLIneButton/>,
   'underline',
 );
 
@@ -67,6 +77,7 @@ export function createButton(
     let active = false;
     if (typeof command === 'string') {
       active = !!$selection && document.queryCommandState(command);
+      console.log(active);
     }
 
     function onAction(e: MouseEvent<HTMLButtonElement>) {
@@ -80,6 +91,7 @@ export function createButton(
         command(editorState);
       } else {
         document.execCommand(command);
+        console.log("command")
       }
     }
 

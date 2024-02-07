@@ -2,17 +2,11 @@ import React from 'react';
 
 export default function UnorderedListIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      style={{ verticalAlign: 'text-top' }}
-    >
-      <path
-        fill="currentColor"
-        d="M7 5h14v2H7V5zm0 8v-2h14v2H7zM4 4.50001c.83 0 1.5.66992 1.5 1.5 0 .83007-.67 1.5-1.5 1.5s-1.5-.66993-1.5-1.5c0-.83008.67-1.5 1.5-1.5zM4 10.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zM7 19v-2h14v2H7zm-3-2.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"
-      />
-    </svg>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.66669 4H4.00002V5.33333H2.66669V4ZM2.66669 7.33333H4.00002V8.66667H2.66669V7.33333ZM2.66669 10.6667H4.00002V12H2.66669V10.6667ZM13.3334 5.33333V4H5.34869V5.33333H12.5334H13.3334ZM5.33335 7.33333H13.3334V8.66667H5.33335V7.33333ZM5.33335 10.6667H13.3334V12H5.33335V10.6667Z" fill="#393F63"/>
+</svg>
+
+
+
   );
 }

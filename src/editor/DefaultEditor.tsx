@@ -2,6 +2,9 @@ import React from 'react';
 import { Editor, EditorProps } from './Editor';
 import { EditorProvider } from './EditorContext';
 import {
+  BtnAligenLeft,
+  BtnAlignCenter,
+  BtnAlignRight,
   BtnBold,
   BtnBulletList,
   BtnClearFormatting,
@@ -18,27 +21,22 @@ import {
   Toolbar,
 } from '../toolbar';
 
+
 export function DefaultEditor(props: EditorProps) {
   return (
     <EditorProvider>
       <Editor {...props}>
         <Toolbar>
-          <BtnUndo />
-          <BtnRedo />
-          <Separator />
           <BtnBold />
           <BtnItalic />
           <BtnUnderline />
-          <BtnStrikeThrough />
           <Separator />
-          <BtnNumberedList />
           <BtnBulletList />
+          <BtnNumberedList />
           <Separator />
-          <BtnLink />
-          <BtnClearFormatting />
-          <HtmlButton />
-          <Separator />
-          <BtnStyles />
+          <BtnAligenLeft/>
+          <BtnAlignCenter/>
+          <BtnAlignRight/>
         </Toolbar>
       </Editor>
     </EditorProvider>
