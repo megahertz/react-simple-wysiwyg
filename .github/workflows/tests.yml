@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 18
 
-    - run: npm ci
+    - run: npm install
     - run: npm ci --prefix e2e/cra
     - run: npx playwright install chromium --prefix e2e/cra
 
