@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 30
+    timeout-minutes: 10
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
     - run: npx --prefix e2e/cra playwright install chromium --with-deps
     - run: npm run test:e2e
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: always()
       with:
         name: playwright-report
