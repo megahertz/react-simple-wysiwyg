@@ -159,7 +159,31 @@ All css classes are consistent, so feel free to use these names in your css:
   - `rsw-separator`
   - `rsw-dd` (drop down list)
   
-  
+## Troubleshooting
+
+### Style issues: no list item bullets, wrong link styles and so on
+
+[#31](https://github.com/megahertz/react-simple-wysiwyg/issues/31),
+[#44](https://github.com/megahertz/react-simple-wysiwyg/issues/44),
+[#45](https://github.com/megahertz/react-simple-wysiwyg/issues/45)
+
+RSW editor doesn't isolate its styles from the parent styles. 
+It's a pretty common case when you use a global reset or normalize styles which
+remove bullets or numbers for lists. 
+To fix that, you should redefine these styles again:
+
+```css
+.rsw-ce ul {
+  list-style: disc;
+  padding-left: 2em;
+}
+
+.rsw-ce ol {
+  list-style: decimal;
+  padding-left: 2em;
+}
+```
+
 ## Credits
 
  - Based on 
