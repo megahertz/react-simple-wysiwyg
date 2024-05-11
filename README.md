@@ -1,5 +1,5 @@
 # react-simple-wysiwyg
-[![Build Status](https://travis-ci.org/megahertz/react-simple-wysiwyg.svg?branch=master)](https://travis-ci.org/megahertz/react-simple-wysiwyg)
+[![Tests](https://github.com/megahertz/react-simple-wysiwyg/actions/workflows/tests.yml/badge.svg)](https://github.com/megahertz/react-simple-wysiwyg/actions/workflows/tests.yml)
 [![NPM version](https://badge.fury.io/js/react-simple-wysiwyg.svg)](https://badge.fury.io/js/react-simple-wysiwyg)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-simple-wysiwyg.svg?color=rgb%2868%2C%20204%2C%2017%29)](https://bundlephobia.com/result?p=react-simple-wysiwyg)
 
