@@ -17,7 +17,7 @@ jobs:
 
     - run: npm install
     - run: npm ci --prefix e2e/cra
-    - run: npx playwright install chromium --prefix e2e/cra
+    - run: npx --prefix e2e/cra playwright install chromium
 
     - run: npm test
 
