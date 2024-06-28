@@ -44,7 +44,7 @@ export function createDropdown(
       const selectedValue = target.value;
       const selectedIndex = parseInt(selectedValue, 10);
 
-      const [, command, commandArgument] = items[selectedIndex];
+      const [, command, commandArgument] = items[selectedIndex] || [];
 
       e.preventDefault();
 
@@ -54,7 +54,7 @@ export function createDropdown(
 
       if (typeof command === 'function') {
         command(editorState);
-      } else {
+      } else if (command) {
         document.execCommand(command, false, commandArgument);
       }
 
