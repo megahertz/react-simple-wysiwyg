@@ -89,12 +89,13 @@ export function createButton(
 
     return (
       <button
-        type="button"
-        title={title}
-        {...props}
         className="rsw-btn"
-        onMouseDown={onAction}
         data-active={active}
+        onMouseDown={onAction}
+        tabIndex={-1}
+        title={title}
+        type="button"
+        {...props}
       >
         {content}
       </button>

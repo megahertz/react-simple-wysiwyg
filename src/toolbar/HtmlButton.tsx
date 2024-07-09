@@ -12,11 +12,11 @@ export function HtmlButton({ ...rest }) {
 
   return (
     <button
-      type="button"
-      title="HTML mode"
       className="rsw-btn"
-      onClick={onClick}
       data-active={editorState.htmlMode}
+      onClick={onClick}
+      title="HTML mode"
+      type="button"
       {...rest}
     >
       &lt;/&gt;

@@ -32,10 +32,11 @@ export function createDropdown(
     return (
       <Dropdown
         {...props}
-        onChange={onChange}
-        title={title}
         items={items}
+        onChange={onChange}
         selected={activeIndex}
+        tabIndex={-1}
+        title={title}
       />
     );
 

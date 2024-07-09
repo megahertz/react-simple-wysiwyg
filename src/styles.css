@@ -9,8 +9,11 @@
 
 .rsw-ce {
   flex: 1 0 auto;
-  outline: none;
   padding: 0.5rem;
+}
+
+.rsw-ce:focus {
+  outline: 1px solid #668;
 }
 
 .rsw-ce[contentEditable='true']:empty:not(:focus):before {
