@@ -15,6 +15,7 @@ export function HtmlButton({ ...rest }) {
       className="rsw-btn"
       data-active={editorState.htmlMode}
       onClick={onClick}
+      tabIndex={-1}
       title="HTML mode"
       type="button"
       {...rest}
