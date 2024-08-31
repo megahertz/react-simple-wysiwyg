@@ -34,3 +34,11 @@ export function replaceCaret(el: HTMLElement) {
     if (el instanceof HTMLElement) el.focus();
   }
 }
+
+export function autoconfigureTextDirection(el: HTMLElement | undefined) {
+  if (el) {
+    const text = el.textContent;
+    const rtlPattern = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
+    el.style.direction = text && rtlPattern.test(text[0]) ? 'rtl' : 'ltr';
+  }
+}

@@ -6,7 +6,11 @@ import type {
   KeyboardEvent,
   SyntheticEvent,
 } from 'react';
-import { normalizeHtml, replaceCaret } from '../utils';
+import {
+  autoconfigureTextDirection,
+  normalizeHtml,
+  replaceCaret,
+} from '../utils';
 
 /**
  * Based on https://github.com/lovasoa/react-contenteditable
@@ -34,6 +38,7 @@ export const ContentEditable = React.memo(
     return React.useMemo(() => {
       function onSetRef($el: HTMLElement) {
         elRef.current = $el;
+        autoconfigureTextDirection($el);
         if (typeof ref === 'function') {
           ref($el);
         } else if (typeof ref === 'object' && ref) {
@@ -59,6 +64,7 @@ export const ContentEditable = React.memo(
           });
         }
 
+        autoconfigureTextDirection(el);
         htmlRef.current = elementHtml;
       }
 
