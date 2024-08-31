@@ -35,12 +35,10 @@ export function replaceCaret(el: HTMLElement) {
   }
 }
 
-// Auto direction
-export function setDirection(el: HTMLElement | undefined) {
+export function autoconfigureTextDirection(el: HTMLElement | undefined) {
   if (el) {
-    const unformattedText = el.textContent;
+    const text = el.textContent;
     const rtlPattern = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
-    const dir = unformattedText && rtlPattern.test(unformattedText[0]) ? 'rtl' : 'ltr';
-    el.style.direction = dir;
+    el.style.direction = text && rtlPattern.test(text[0]) ? 'rtl' : 'ltr';
   }
 }
