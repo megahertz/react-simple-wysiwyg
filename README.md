@@ -189,8 +189,6 @@ To fix that, you should redefine these styles again:
 [#55](https://github.com/megahertz/react-simple-wysiwyg/issues/55). Also, it's a
 good example of inserting a custom HTML element.
 
-```tsx
-
 ## Credits
 
  - Based on 
