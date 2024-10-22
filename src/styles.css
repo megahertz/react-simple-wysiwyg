@@ -17,8 +17,9 @@
 }
 
 .rsw-ce[contentEditable='true']:empty:not(:focus):before {
-  content: attr(placeholder);
   color: grey;
+  content: attr(placeholder);
+  pointer-events: none;
 }
 
 .rsw-html {
