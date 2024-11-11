@@ -16,7 +16,6 @@ export function EditorProvider({ children }: { children: ReactNode }) {
       return {
         ...prevState,
         ...attrs,
-        date: Date.now(),
       };
     });
   }
