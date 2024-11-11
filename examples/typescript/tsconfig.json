@@ -8,9 +8,10 @@
     "skipLibCheck": true,
     "target": "es5",
     "paths": {
+      "react": [ "./node_modules/@types/react" ],
       "react-simple-wysiwyg/*": ["../../src/*"],
       "react-simple-wysiwyg": ["../../src/index.ts"]
-    }
+    },
   },
   "include": ["src/**/*"]
 }

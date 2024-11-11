@@ -1,3 +1,13 @@
+import type { ForwardedRef } from 'react';
+
+export function autoconfigureTextDirection(el: HTMLElement | undefined) {
+  if (el) {
+    const text = el.textContent;
+    const rtlPattern = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
+    el.style.direction = text && rtlPattern.test(text[0]) ? 'rtl' : 'ltr';
+  }
+}
+
 export function getSelectedNode(): Node | undefined {
   if ((document as any).selection) {
     return (document as any).selection.createRange().parentElement();
@@ -35,10 +45,14 @@ export function replaceCaret(el: HTMLElement) {
   }
 }
 
-export function autoconfigureTextDirection(el: HTMLElement | undefined) {
-  if (el) {
-    const text = el.textContent;
-    const rtlPattern = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
-    el.style.direction = text && rtlPattern.test(text[0]) ? 'rtl' : 'ltr';
+export function setForwardRef<T = HTMLDivElement>(
+  el: T,
+  ref?: ForwardedRef<T>,
+) {
+  if (typeof ref === 'function') {
+    ref(el);
+  } else if (typeof ref === 'object' && ref) {
+    // eslint-disable-next-line no-param-reassign
+    ref.current = el;
   }
 }

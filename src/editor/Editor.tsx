@@ -1,17 +1,15 @@
-import type { ComponentProps, SyntheticEvent } from 'react';
+import { ComponentProps, ForwardedRef, SyntheticEvent } from 'react';
 import React from 'react';
-import { getSelectedNode } from '../utils';
+import { getSelectedNode, setForwardRef } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
 import { HtmlEditor } from './HtmlEditor';
 import '../styles.css';
 
-export function Editor({
-  children,
-  containerProps,
-  onSelect,
-  ...rest
-}: EditorProps) {
+export const Editor = React.forwardRef(function Editor(
+  { children, containerProps, onSelect, ...rest }: EditorProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   const editorState = useEditorState();
 
   React.useEffect(() => {
@@ -31,13 +29,14 @@ export function Editor({
     editorState.update({ $selection: undefined });
   }
 
-  function onTextSelect(event: SyntheticEvent<HTMLElement>) {
+  function onTextSelect(event: SyntheticEvent<HTMLDivElement>) {
     onSelect?.(event);
     editorState.update({ $selection: getSelectedNode() });
   }
 
-  function setContentEditableRef($el: HTMLElement) {
+  function setContentEditableRef($el: HTMLDivElement) {
     editorState.update({ $el });
+    setForwardRef($el, ref);
   }
 
   if (editorState.htmlMode) {
@@ -60,7 +59,7 @@ export function Editor({
       />
     </div>
   );
-}
+});
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EditorProps extends ContentEditableProps {

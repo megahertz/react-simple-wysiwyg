@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ForwardedRef } from 'react';
 import { Editor, EditorProps } from './Editor';
 import { EditorProvider } from './EditorContext';
 import {
@@ -18,10 +18,13 @@ import {
   Toolbar,
 } from '../toolbar';
 
-export function DefaultEditor(props: EditorProps) {
+export const DefaultEditor = React.forwardRef(function DefaultEditor(
+  props: EditorProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
     <EditorProvider>
-      <Editor {...props}>
+      <Editor {...props} ref={ref}>
         <Toolbar>
           <BtnUndo />
           <BtnRedo />
@@ -43,4 +46,4 @@ export function DefaultEditor(props: EditorProps) {
       </Editor>
     </EditorProvider>
   );
-}
+});

@@ -10,6 +10,7 @@ import {
   autoconfigureTextDirection,
   normalizeHtml,
   replaceCaret,
+  setForwardRef,
 } from '../utils';
 
 /**
@@ -19,9 +20,9 @@ import {
 export const ContentEditable = React.memo(
   React.forwardRef(function ContentEditable(
     { className, disabled, tagName, value = '', ...rest }: ContentEditableProps,
-    ref: ForwardedRef<HTMLElement>,
+    ref: ForwardedRef<HTMLDivElement>,
   ) {
-    const elRef = React.useRef<HTMLElement>();
+    const elRef = React.useRef<HTMLDivElement>();
     const htmlRef = React.useRef(value);
     const restRef = React.useRef(rest);
 
@@ -36,15 +37,10 @@ export const ContentEditable = React.memo(
     });
 
     return React.useMemo(() => {
-      function onSetRef($el: HTMLElement) {
+      function onSetRef($el: HTMLDivElement) {
         elRef.current = $el;
         autoconfigureTextDirection($el);
-        if (typeof ref === 'function') {
-          ref($el);
-        } else if (typeof ref === 'object' && ref) {
-          // eslint-disable-next-line no-param-reassign
-          ref.current = $el;
-        }
+        setForwardRef($el, ref);
       }
 
       function onChange(event: SyntheticEvent<any>) {
@@ -93,7 +89,6 @@ export type ContentEditableEvent = SyntheticEvent<any, Event> & {
 
 export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean;
-  contentEditableRef?: (el: HTMLElement) => void;
   name?: string;
   onChange?: (event: ContentEditableEvent) => void;
   tagName?: string;
