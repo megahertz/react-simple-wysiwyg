@@ -3,7 +3,6 @@ import React from 'react';
 import { getSelectedNode, setForwardRef } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
-import { HtmlEditor } from './HtmlEditor';
 import '../styles.css';
 
 export const Editor = React.forwardRef(function Editor(
@@ -43,7 +42,7 @@ export const Editor = React.forwardRef(function Editor(
     return (
       <div className="rsw-editor" {...containerProps}>
         {children}
-        <HtmlEditor {...rest} className="rsw-ce rsw-html" />
+        <textarea {...rest} className="rsw-ce rsw-html" />
       </div>
     );
   }
