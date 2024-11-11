@@ -26,7 +26,9 @@ export function getSelectedNode(): Node | undefined {
 }
 
 export function normalizeHtml(str: string | undefined): string {
-  return str ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ') : '';
+  return str
+    ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ').replace(/<br \/>/g, '<br>')
+    : '';
 }
 
 export function replaceCaret(el: HTMLElement) {
