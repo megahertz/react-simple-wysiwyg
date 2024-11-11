@@ -20,7 +20,15 @@ import {
  */
 export const ContentEditable = React.memo(
   React.forwardRef(function ContentEditable(
-    { className, disabled, tagName, value = '', ...rest }: ContentEditableProps,
+    {
+      // Some properties are used here only as useMemo dependencies
+      className,
+      disabled,
+      tagName,
+      value = '',
+      placeholder,
+      ...rest
+    }: ContentEditableProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) {
     const elRef = React.useRef<HTMLDivElement>();
@@ -78,10 +86,11 @@ export const ContentEditable = React.memo(
           (restRef.current.onKeyDown || onChange)(e),
         onKeyUp: (e: KeyboardEvent<HTMLElement>) =>
           (restRef.current.onKeyUp || onChange)(e),
+        placeholder,
         ref: onSetRef,
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [className, disabled, tagName]);
+    }, [className, disabled, placeholder, tagName]);
   }),
 );
 
@@ -93,6 +102,7 @@ export interface ContentEditableProps extends HTMLAttributes<HTMLElement> {
   disabled?: boolean;
   name?: string;
   onChange?: (event: ContentEditableEvent) => void;
+  placeholder?: string;
   tagName?: string;
   value?: string;
 }
