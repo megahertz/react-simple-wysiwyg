@@ -61,7 +61,20 @@ If you need more powerful solution for React, you'd better take a look at:
       );
     }
     ```
-    
+### Component Props
+
+Generally, all props as well as a ref are passed to the content editable 
+element, which is actually a div element. Also, it support a few additional
+properties to act similar to an input element:
+
+- **disabled** for read-only mode
+- **name** for onChange event
+- **placeholder**
+- **tagName** default is 'div'
+- **value**
+
+You can also set the root container props using `containerProps` property.
+
 ### Custom toolbar
 
 ```tsx
