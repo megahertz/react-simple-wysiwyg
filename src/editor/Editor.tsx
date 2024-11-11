@@ -1,6 +1,6 @@
 import { ComponentProps, ForwardedRef, SyntheticEvent } from 'react';
 import React from 'react';
-import { getSelectedNode, setForwardRef } from '../utils';
+import { cls, getSelectedNode, setForwardRef } from '../utils';
 import { ContentEditable, ContentEditableProps } from './ContentEditable';
 import { useEditorState } from './EditorContext';
 import '../styles.css';
@@ -38,9 +38,11 @@ export const Editor = React.forwardRef(function Editor(
     setForwardRef($el, ref);
   }
 
+  const cssClass = cls('rsw-editor', containerProps?.className);
+
   if (editorState.htmlMode) {
     return (
-      <div className="rsw-editor" {...containerProps}>
+      <div {...containerProps} className={cssClass}>
         {children}
         <textarea {...rest} className="rsw-ce rsw-html" />
       </div>
@@ -48,13 +50,12 @@ export const Editor = React.forwardRef(function Editor(
   }
 
   return (
-    <div className="rsw-editor" {...containerProps}>
+    <div {...containerProps} className={cssClass}>
       {children}
       <ContentEditable
         {...rest}
         ref={setContentEditableRef}
         onSelect={onTextSelect}
-        className="rsw-ce"
       />
     </div>
   );

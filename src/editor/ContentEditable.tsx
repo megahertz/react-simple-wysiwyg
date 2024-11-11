@@ -8,6 +8,7 @@ import type {
 } from 'react';
 import {
   autoconfigureTextDirection,
+  cls,
   normalizeHtml,
   replaceCaret,
   setForwardRef,
@@ -64,9 +65,10 @@ export const ContentEditable = React.memo(
         htmlRef.current = elementHtml;
       }
 
+      const cssClass = cls('rsw-ce', className);
       return React.createElement(tagName || 'div', {
         ...rest,
-        className,
+        className: cssClass,
         contentEditable: !disabled,
         dangerouslySetInnerHTML: { __html: value },
         onBlur: (e: FocusEvent<HTMLElement>) =>

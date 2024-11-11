@@ -8,6 +8,10 @@ export function autoconfigureTextDirection(el: HTMLElement | undefined) {
   }
 }
 
+export function cls(...classNames: unknown[]): string {
+  return classNames.filter(Boolean).join(' ');
+}
+
 export function getSelectedNode(): Node | undefined {
   if ((document as any).selection) {
     return (document as any).selection.createRange().parentElement();
