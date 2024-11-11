@@ -6,7 +6,7 @@ import { useEditorState } from './EditorContext';
 import '../styles.css';
 
 export const Editor = React.forwardRef(function Editor(
-  { children, containerProps, onSelect, ...rest }: EditorProps,
+  { autoFocus, children, containerProps, onSelect, ...rest }: EditorProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) {
   const editorState = useEditorState();
@@ -36,6 +36,9 @@ export const Editor = React.forwardRef(function Editor(
   function setContentEditableRef($el: HTMLDivElement) {
     editorState.update({ $el });
     setForwardRef($el, ref);
+    if (autoFocus && $el && editorState.$el === undefined) {
+      $el.focus();
+    }
   }
 
   const cssClass = cls('rsw-editor', containerProps?.className);

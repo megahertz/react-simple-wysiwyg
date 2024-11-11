@@ -11,6 +11,7 @@ export default function App() {
   return (
     <>
       <RswEditor
+        autoFocus
         containerProps={{ style: { resize: 'vertical' } }}
         placeholder="Test 2"
         value={html}
