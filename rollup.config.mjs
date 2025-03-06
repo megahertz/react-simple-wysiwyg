@@ -1,10 +1,10 @@
-import styles from '@ironkinoko/rollup-plugin-styles';
-import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
+import terser from '@rollup/plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 import fileSize from 'rollup-plugin-filesize';
-import typescript from 'rollup-plugin-ts';
+import styles from 'rollup-plugin-styler';
 
-import packageJson from './package.json' assert { type: 'json' };
+import packageJson from './package.json' with { type: 'json' };
 
 export default [
   {
@@ -39,14 +39,7 @@ export default [
       },
     ],
     plugins: [
-      typescript({
-        browserslist: false,
-        hook: {
-          outputPath: (filePath, kind) => {
-            return kind === 'declaration' ? packageJson.typings : filePath;
-          }
-        },
-      }),
+      typescript(),
       styles({ minimize: true }),
       fileSize(),
     ],

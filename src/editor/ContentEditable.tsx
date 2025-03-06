@@ -31,7 +31,7 @@ export const ContentEditable = React.memo(
     }: ContentEditableProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) {
-    const elRef = React.useRef<HTMLDivElement>();
+    const elRef = React.useRef<HTMLDivElement>(null);
     const htmlRef = React.useRef(value);
     const restRef = React.useRef(rest);
 
