@@ -76,11 +76,9 @@ You can also set the root container props using `containerProps` property.
 
 ```tsx
 import { useState } from 'react';
-import { 
+import RswEditor, { 
   BtnBold,
   BtnItalic,
-  Editor,
-  EditorProvider,
   Toolbar
 } from 'react-simple-wysiwyg';
 
@@ -92,14 +90,12 @@ export default function CustomEditor() {
   }
 
   return (
-    <EditorProvider>
-      <Editor value={value} onChange={onChange}>
-        <Toolbar>
-          <BtnBold />
-          <BtnItalic />
-        </Toolbar>
-      </Editor>
-    </EditorProvider>
+    <RswEditor value={value} onChange={onChange}>
+      <Toolbar>
+        <BtnBold />
+        <BtnItalic />
+      </Toolbar>
+    </RswEditor>
   );
 }
 ```
