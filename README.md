@@ -76,7 +76,7 @@ You can also set the root container props using `containerProps` property.
 
 ```tsx
 import { useState } from 'react';
-import RswEditor, { 
+import Editor, { 
   BtnBold,
   BtnItalic,
   Toolbar
@@ -90,12 +90,12 @@ export default function CustomEditor() {
   }
 
   return (
-    <RswEditor value={value} onChange={onChange}>
+    <Editor value={value} onChange={onChange}>
       <Toolbar>
         <BtnBold />
         <BtnItalic />
       </Toolbar>
-    </RswEditor>
+    </Editor>
   );
 }
 ```
@@ -113,11 +113,10 @@ but there is still no alternative and there are no plans to remove it from
 browsers. Most of the popular WYSIWYG editors continue using it.
 
 ```tsx
-import { 
+import Editor, { 
   BtnBold, 
   BtnItalic, 
-  createButton, 
-  Editor, 
+  createButton,
   EditorProvider, 
   Toolbar
 } from 'react-simple-wysiwyg';
@@ -126,15 +125,13 @@ const BtnAlignCenter = createButton('Align center', '≡', 'justifyCenter');
 
 export default function CustomEditor({ value, onChange }) {
   return (
-    <EditorProvider>
-      <Editor value={value} onChange={onChange}>
-        <Toolbar>
-          <BtnBold />
-          <BtnItalic />
-          <BtnAlignCenter />
-        </Toolbar>
-      </Editor>
-    </EditorProvider>
+    <Editor value={value} onChange={onChange}>
+      <Toolbar>
+        <BtnBold />
+        <BtnItalic />
+        <BtnAlignCenter />
+      </Toolbar>
+    </Editor>
   );
 }
 ```
