@@ -66,7 +66,7 @@ export function createDropdown(
 
 export function Dropdown({ items, selected, ...inputProps }: DropdownProps) {
   return (
-    <select {...inputProps} value={selected} className="rsw-dd">
+    <select className="rsw-dd" {...inputProps} value={selected}>
       <option hidden>{inputProps.title}</option>
       {items.map((item, index) => (
         <option key={item[2]} value={index}>
