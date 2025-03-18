@@ -25,24 +25,26 @@ export const DefaultEditor = React.forwardRef(function DefaultEditor(
   return (
     <EditorProvider>
       <Editor {...props} ref={ref}>
-        <Toolbar>
-          <BtnUndo />
-          <BtnRedo />
-          <Separator />
-          <BtnBold />
-          <BtnItalic />
-          <BtnUnderline />
-          <BtnStrikeThrough />
-          <Separator />
-          <BtnNumberedList />
-          <BtnBulletList />
-          <Separator />
-          <BtnLink />
-          <BtnClearFormatting />
-          <HtmlButton />
-          <Separator />
-          <BtnStyles />
-        </Toolbar>
+        {props.children || (
+          <Toolbar>
+            <BtnUndo />
+            <BtnRedo />
+            <Separator />
+            <BtnBold />
+            <BtnItalic />
+            <BtnUnderline />
+            <BtnStrikeThrough />
+            <Separator />
+            <BtnNumberedList />
+            <BtnBulletList />
+            <Separator />
+            <BtnLink />
+            <BtnClearFormatting />
+            <HtmlButton />
+            <Separator />
+            <BtnStyles />
+          </Toolbar>
+        )}
       </Editor>
     </EditorProvider>
   );
