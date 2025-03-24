@@ -39,7 +39,7 @@ export default [
       },
     ],
     plugins: [
-      typescript(),
+      typescript({ sourceMap: false }),
       styles({ minimize: true }),
       fileSize(),
     ],
