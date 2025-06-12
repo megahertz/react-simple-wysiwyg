@@ -62,17 +62,18 @@ export function createButton(
 
   function ButtonFactory(props: HTMLAttributes<HTMLButtonElement>) {
     const editorState = useEditorState();
-    const { $el, $selection } = editorState;
+    const { $el } = editorState;
+    const isElFocused = () => Boolean($el?.contains(document.activeElement));
 
     let active = false;
     if (typeof command === 'string') {
-      active = !!$selection && document.queryCommandState(command);
+      active = isElFocused() && document.queryCommandState(command);
     }
 
     function onAction(e: MouseEvent<HTMLButtonElement>) {
       e.preventDefault();
 
-      if (document.activeElement !== $el) {
+      if (!isElFocused()) {
         $el?.focus();
       }
 
