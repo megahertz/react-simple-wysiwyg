@@ -1,6 +1,6 @@
 {
   "name": "react-simple-wysiwyg",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "Simple and lightweight React WYSIWYG editor",
   "main": "lib/index.cjs.js",
   "module": "lib/index.es.mjs",
