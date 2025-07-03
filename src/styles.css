@@ -8,7 +8,8 @@
 }
 
 .rsw-ce {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  overflow: auto;
   padding: 0.5rem;
 }
 
