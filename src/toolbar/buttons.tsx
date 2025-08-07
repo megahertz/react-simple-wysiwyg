@@ -51,6 +51,22 @@ export const BtnUnderline = createButton(
 
 export const BtnUndo = createButton('Undo', '↶', 'undo');
 
+export const BtnSuperscript = createButton(
+  'Superscript',
+  <span>
+    a<sup>𝒙</sup>
+  </span>,
+  'superscript',
+);
+
+export const BtnSubscript = createButton(
+  'Subscript',
+  <span>
+    a<sub>𝒙</sub>
+  </span>,
+  'subscript',
+);
+
 export function createButton(
   title: string,
   content: ReactNode,
