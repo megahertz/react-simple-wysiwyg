@@ -17,6 +17,11 @@
   outline: 1px solid #668;
 }
 
+.rsw-ce sup, .rsw-ce sub {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
 .rsw-ce[contentEditable='true']:empty:not(:focus):before {
   color: grey;
   content: attr(placeholder);
