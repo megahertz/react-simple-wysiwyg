@@ -15,6 +15,7 @@ import {
   BtnSuperscript,
   BtnUnderline,
   BtnUndo,
+  BtnSpecialCharacters,
   HtmlButton,
   Separator,
   Toolbar,
@@ -45,6 +46,7 @@ export const DefaultEditor = React.forwardRef(function DefaultEditor(
             <Separator />
             <BtnLink />
             <BtnClearFormatting />
+            <BtnSpecialCharacters />
             <HtmlButton />
             <Separator />
             <BtnStyles />
