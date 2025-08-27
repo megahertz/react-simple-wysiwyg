@@ -67,7 +67,7 @@ to act like an input element:
 - **disabled** for read-only mode
 - **name** for onChange event
 - **placeholder**
-- **tagName** 'div' ny default
+- **tagName** 'div' by default
 - **value**
 
 You can also set the root container props using `containerProps` property.
