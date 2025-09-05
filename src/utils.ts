@@ -26,12 +26,13 @@ export function getSelectedNode(): Node | undefined {
 }
 
 export function normalizeHtml(str: string | undefined): string {
-
-  if (str === null || str === undefined){
+  if (str === null || str === undefined) {
     return '';
   }
 
-  return typeof str === 'string' ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ').replace(/<br \/>/g, '<br>') : String(str);
+  return typeof str === 'string'
+    ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ').replace(/<br \/>/g, '<br>')
+    : String(str);
 }
 
 export function replaceCaret(el: HTMLElement) {
