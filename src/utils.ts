@@ -25,10 +25,10 @@ export function getSelectedNode(): Node | undefined {
   return undefined;
 }
 
-export function normalizeHtml(str: string | undefined): string {
-  return str
+export function normalizeHtml(str: unknown): string {
+  return typeof str === 'string'
     ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ').replace(/<br \/>/g, '<br>')
-    : '';
+    : String(str);
 }
 
 export function replaceCaret(el: HTMLElement) {
