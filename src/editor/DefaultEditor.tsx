@@ -11,8 +11,11 @@ import {
   BtnRedo,
   BtnStrikeThrough,
   BtnStyles,
+  BtnSubscript,
+  BtnSuperscript,
   BtnUnderline,
   BtnUndo,
+  BtnSpecialCharacters,
   HtmlButton,
   Separator,
   Toolbar,
@@ -35,11 +38,15 @@ export const DefaultEditor = React.forwardRef(function DefaultEditor(
             <BtnUnderline />
             <BtnStrikeThrough />
             <Separator />
+            <BtnSuperscript />
+            <BtnSubscript />
+            <Separator />
             <BtnNumberedList />
             <BtnBulletList />
             <Separator />
             <BtnLink />
             <BtnClearFormatting />
+            <BtnSpecialCharacters />
             <HtmlButton />
             <Separator />
             <BtnStyles />

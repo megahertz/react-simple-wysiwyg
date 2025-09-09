@@ -17,6 +17,11 @@
   outline: 1px solid #668;
 }
 
+.rsw-ce sup, .rsw-ce sub {
+  font-size: 0.75em;
+  line-height: 0;
+}
+
 .rsw-ce[contentEditable='true']:empty:not(:focus):before {
   color: grey;
   content: attr(placeholder);
@@ -66,4 +71,42 @@
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
   display: flex;
+}
+
+.rsw-click-disabler {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.rsw-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 1000;
+  max-width: min(80vw, 400px);
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0;
+      color: #2c5aa0;
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28px, 1fr));
+    gap: 5px;
+    max-width: 80dvw;
+  }
 }
