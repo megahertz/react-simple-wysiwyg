@@ -25,11 +25,7 @@ export function getSelectedNode(): Node | undefined {
   return undefined;
 }
 
-export function normalizeHtml(str: string | undefined): string {
-  if (str === null || str === undefined) {
-    return '';
-  }
-
+export function normalizeHtml(str: unknown): string {
   return typeof str === 'string'
     ? str.replace(/&nbsp;|\u202F|\u00A0/g, ' ').replace(/<br \/>/g, '<br>')
     : String(str);
